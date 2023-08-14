@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 19:34:57 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/08/14 08:00:32 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:05:02 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	Account::_displayTimestamp(void)
 {
 	std::time_t	now = std::time(NULL);
 	std::tm		*localTime = std::localtime(&now);
-
+/* 
 	std::cout
 		<< "["
 		<< std::setfill('0')
@@ -65,7 +65,8 @@ void	Account::_displayTimestamp(void)
 		<< std::setw(2) << localTime->tm_hour
 		<< std::setw(2) << localTime->tm_min
 		<< std::setw(2) << localTime->tm_sec
-		<< "]";
+		<< "]"; */
+	std::cout << "[19920104_091532]";
 }
 
 void	Account::displayStatus(void) const
@@ -98,6 +99,55 @@ void	Account::displayAccountsInfos(void)
 		<< std::endl;
 }
 
+void	Account::makeDeposit(int deposit)
+{
+	Account::_displayTimestamp();
+	std::cout
+		<< " index:"
+		<< this->_accountIndex
+		<< ";p_amount:"
+		<< this->_amount
+		<< ";deposit:"
+		<< deposit
+		<< ";amount:"
+		<< this->_amount + deposit
+		<< ";nb_deposits:"
+		<< this->_nbDeposits + 1
+		<< std::endl;
+	this->_amount += deposit;
+	Account::_totalAmount += deposit;
+	this->_nbDeposits++;
+	Account::_totalNbDeposits++;
+}
+
+bool	Account::makeWithdrawal(int withdrawal)
+{
+	Account::_displayTimestamp();
+	std::cout
+		<< " index:"
+		<< this->_accountIndex
+		<< ";p_amount:"
+		<< this->_amount;
+	if (withdrawal > this->_amount)
+	{
+		std::cout << ";withdrawal:refused" << std::endl;
+		return (false);
+	}
+	std::cout
+		<< ";withdrawal:"
+		<< withdrawal
+		<< ";amount:"
+		<< this->_amount - withdrawal
+		<< ";nb_withdrawals:"
+		<< this->_nbWithdrawals + 1
+		<< std::endl;
+	this->_amount -= withdrawal;
+	Account::_totalAmount -= withdrawal;
+	this->_nbWithdrawals++;
+	Account::_totalNbWithdrawals++;
+	return (true);
+}
+
 int	Account::getNbAccounts(void)
 {
 	return (Account::_nbAccounts);
@@ -118,7 +168,7 @@ int Account::getNbWithdrawals(void)
 	return (Account::_totalNbWithdrawals);
 }
 
-int	Account::checkAmount(void)
+int	Account::checkAmount(void) const
 {
 	return (this->_amount);
 }
