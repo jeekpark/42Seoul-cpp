@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 12:21:00 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/08/13 19:16:52 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:28:43 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
+
+# include <iostream>
+# include <iomanip>
 
 class Phonebook
 {

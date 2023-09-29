@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 13:41:23 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/08/13 19:16:41 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:56:26 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,45 @@ void	Phonebook::add()
 {
 	std::string	str;
 
-	std::cout << "First name: ";
-	std::getline(std::cin, str);
-	this->_contacts[this->_index].set_first_name(str);
-
-	std::cout << "Last name: ";
-	std::getline(std::cin, str);
-	this->_contacts[this->_index].set_last_name(str);
-
-	std::cout << "Nickname: ";
-	std::getline(std::cin, str);
-	this->_contacts[this->_index].set_nick_name(str);
-
-	std::cout << "Phone number: ";
-	std::getline(std::cin, str);
-	this->_contacts[this->_index].set_phone_number(str);
-
-	std::cout << "Darkest secret: ";
-	std::getline(std::cin, str);
-	this->_contacts[this->_index].set_darkest_secret(str);
-	
+	while (str == "" && std::cin.eof() == false)
+	{
+		std::cout << "First name: ";
+		std::getline(std::cin, str);
+		if (str != "")
+			this->_contacts[this->_index].set_first_name(str);
+	}
+	str = "";
+	while (str == "" && std::cin.eof() == false)
+	{
+		std::cout << "Last name: ";
+		std::getline(std::cin, str);
+		if (str != "")
+			this->_contacts[this->_index].set_last_name(str);
+	}
+	str = "";
+	while (str == "" && std::cin.eof() == false)
+	{
+		std::cout << "Nickname: ";
+		std::getline(std::cin, str);
+		if (str != "")
+			this->_contacts[this->_index].set_nick_name(str);
+	}
+	str = "";
+	while (str == "" && std::cin.eof() == false)
+	{
+		std::cout << "Phone number: ";
+		std::getline(std::cin, str);
+		if (str != "")
+			this->_contacts[this->_index].set_phone_number(str);
+	}
+	str = "";
+	while (str == "" && std::cin.eof() == false)
+	{
+		std::cout << "Darkest secret: ";
+		std::getline(std::cin, str);
+		if (str != "")
+			this->_contacts[this->_index].set_darkest_secret(str);
+	}
 	if (this->_count != 8)
 		this->_count++;
 	this->_index++;

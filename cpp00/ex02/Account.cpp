@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 19:34:57 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/08/14 12:05:02 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/09/29 23:34:37 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	Account::_displayTimestamp(void)
 {
 	std::time_t	now = std::time(NULL);
 	std::tm		*localTime = std::localtime(&now);
-/* 
 	std::cout
 		<< "["
 		<< std::setfill('0')
@@ -65,8 +64,7 @@ void	Account::_displayTimestamp(void)
 		<< std::setw(2) << localTime->tm_hour
 		<< std::setw(2) << localTime->tm_min
 		<< std::setw(2) << localTime->tm_sec
-		<< "]"; */
-	std::cout << "[19920104_091532]";
+		<< "]";
 }
 
 void	Account::displayStatus(void) const

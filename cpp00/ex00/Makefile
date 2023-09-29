@@ -6,14 +6,14 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/12 20:04:09 by jeekpark          #+#    #+#              #
-#    Updated: 2023/08/12 20:08:06 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/09/29 15:50:38 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= megaphone
 
 CC			= c++
-CFALG		= -Wall -Wextra -Werror -std=c++98
+CFALGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
 SRCS		= megaphone.cpp
@@ -22,10 +22,10 @@ OBJS		= ${SRCS:.cpp=.o}
 all : ${NAME}
 
 ${NAME} : ${OBJS}
-	${CC} ${CFALG} ${OBJS} -o ${NAME}
+	${CC} ${CFALGS} ${OBJS} -o ${NAME}
 
 %.o : %.cpp
-	${CC} ${CFALG} -c $< -o $@
+	${CC} ${CFALGS} -c $< -o $@
 
 clean :
 	${RM} ${OBJS}

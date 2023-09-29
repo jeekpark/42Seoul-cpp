@@ -6,16 +6,16 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 21:19:55 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/08/13 12:17:23 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/09/29 18:14:49 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include <iostream>
+
 # include <string>
-# include <iomanip>
+
 
 class Contact
 {

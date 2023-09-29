@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 21:53:21 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/08/13 12:17:20 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:50:02 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ std::string	Contact::get_first_name() const
 	return (this->_first_name);
 }
 
-std::string	Contact::get_last_name() const
+std::string Contact::get_last_name() const
 {
 	return (this->_last_name);
 }
 
-std::string	Contact::get_nick_name() const
+std::string Contact::get_nick_name() const
 {
 	return (this->_nick_name);
 }
 
-std::string	Contact::get_phone_number() const
+std::string Contact::get_phone_number() const
 {
 	return (this->_phone_number);
 }
