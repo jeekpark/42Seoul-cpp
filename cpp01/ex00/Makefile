@@ -5,18 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/14 11:49:08 by jeekpark          #+#    #+#              #
-#    Updated: 2023/09/30 00:37:16 by jeekpark         ###   ########.fr        #
+#    Created: 2023/09/30 00:26:32 by jeekpark          #+#    #+#              #
+#    Updated: 2023/09/30 01:23:25 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= account
+NAME	=	run
 
-CC			= c++
-CFLAGS		= -Wall -Wextra -Werror -std=c++98
+CC		=	c++
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRCS		= Account.cpp tests.cpp
-OBJS		= $(SRCS:.cpp=.o)
+SRCS	=	main.cpp			\
+			Zombie.cpp			\
+			randomChump.cpp		\
+			newZombie.cpp
+
+OBJS	=	${SRCS:.cpp=.o}
 
 %.o : %.cpp
 	${CC} ${CFALGS} -c $< -o $@
@@ -29,8 +33,8 @@ $(NAME) : $(OBJS)
 clean :
 	rm -rf $(OBJS)
 
-fclean : clean
-	rm -rf $(NAME)
+fclean :
+	rm -rf $(OBJS) $(NAME)
 
 re :
 	make fclean
