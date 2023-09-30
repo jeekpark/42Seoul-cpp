@@ -5,17 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/30 17:50:44 by jeekpark          #+#    #+#              #
-#    Updated: 2023/09/30 17:54:01 by jeekpark         ###   ########.fr        #
+#    Created: 2023/09/30 18:07:23 by jeekpark          #+#    #+#              #
+#    Updated: 2023/09/30 18:25:55 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	run
 
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	=	-Wall -Wextra -Werror
 
-SRCS		=	main.cpp
+SRCS		=	main.cpp			\
+				Weapon.cpp			\
+
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp
@@ -36,4 +38,4 @@ re :
 	make fclean
 	make all
 
-.PHONY: all fclean clean re
+.PHONY: all clean fclean re
