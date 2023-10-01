@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/30 18:39:03 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/01 13:47:32 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/01 14:14:24 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/01 14:48:14 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
 # include "Weapon.hpp"
 
-class HumanA
+class HumanB
 {
 	private:
 		std::string		_name;
-		Weapon&			_weapon;
+		Weapon*			_weapon;
 	public:
-		HumanA( std::string name, Weapon& weapon );
-		~HumanA( void );
-		
+		HumanB( std::string name );
+		~HumanB( void );
+
 		void	attack( void ) const;
+		void	setWeapon( Weapon& weapon );
 };
 
 #endif

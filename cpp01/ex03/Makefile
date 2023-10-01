@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/30 18:07:23 by jeekpark          #+#    #+#              #
-#    Updated: 2023/09/30 18:25:55 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/01 14:22:36 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ CXXFLAGS	=	-Wall -Wextra -Werror
 
 SRCS		=	main.cpp			\
 				Weapon.cpp			\
+				HumanA.cpp			\
+				HumanB.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

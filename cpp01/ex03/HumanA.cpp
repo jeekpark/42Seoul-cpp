@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/30 18:21:28 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/01 14:55:46 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/01 13:14:27 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/01 14:55:28 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Weapon.hpp"
+#include "HumanA.hpp"
 
-Weapon::Weapon( const std::string type ) : _type(type)
+HumanA::HumanA( std::string name, Weapon& weapon ) : _name(name), _weapon(weapon)
 {
 	std::cout
-		<< "[Weapon constructed]\ttype:\t"
-		<< this->_type
+		<< "[HumanA constructed]\tname:\t"
+		<< name
+		<< ",\tweapon: "
+		<< weapon.getType()
 		<< std::endl;
 }
 
-Weapon::~Weapon()
+HumanA::~HumanA( void )
 {
 	std::cout
-		<< "[Weapon destructed]\ttype:\t"
-		<< this->_type
+		<< "[HumanA destructed]\tname:\t"
+		<< this->_name
+		<< ",\tweapon: "
+		<< this->_weapon.getType()
 		<< std::endl;
 }
 
-const std::string&	Weapon::getType( void ) const
+void	HumanA::attack( void ) const
 {
-	return this->_type;
-}
-
-void	Weapon::setType( const std::string type )
-{
-	this->_type = type;
+	std::cout
+		<< this->_name
+		<< " attacks with his "
+		<< this->_weapon.getType()
+		<< std::endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:12:10 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/09/30 18:35:37 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/01 13:31:17 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ class Weapon
 	private:
 		std::string		_type;
 	public:
-		Weapon( std::string type );
+		Weapon( const std::string type );
 		~Weapon();
 		
 		const std::string&	getType( void ) const;
-		void				setType( std::string type );	
+		void				setType( const std::string type );	
 	
 };
 
