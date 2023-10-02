@@ -34,18 +34,18 @@ int	main( int argc, char **argv )
 	if ( argc != 4 )
 	{
 		std::cerr << "Usage: ./replace <filename> <s1> <s2>." << std::endl;
-		return EXIT_FAILURE; 
+		return 1; 
 	}
 	if ( std::string(argv[2]).empty() == true )
 	{
 		std::cerr << "Error: <s1> shouldn't be empty string." << std::endl;
-		return EXIT_FAILURE;
+		return 1;
 	}
 	std::ifstream	file( argv[1], std::ios::in | std::ios::out );
 	if ( file.is_open() == false )
 	{
 		std::cerr << "Error: Unable to open file." << std::endl;
-		return EXIT_FAILURE;
+		return 1;
 	}
 	std::ostringstream	stringStream;
 	stringStream << file.rdbuf();
@@ -54,9 +54,11 @@ int	main( int argc, char **argv )
 
 	content = replaceString( content, argv[2], argv[3] );
 
-	std::ofstream	outFile( std::string( argv[1] ) + ".replace" );
+	std::string	newFileName( argv[1] );
+	newFileName.append( ".replace" );
+	std::ofstream	outFile( newFileName.c_str() );
 	outFile << content;
 	outFile.close();
 
-	return EXIT_SUCCESS;
+	return 0;
 }
