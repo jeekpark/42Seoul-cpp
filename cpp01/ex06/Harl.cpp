@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:46:13 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/02 17:33:55 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:33:56 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	Harl::error( void )
 
 void	Harl::complain( std::string level )
 {
-	
 	std::string	levels[4] = {
 		"DEBUG",
 		"INFO",
