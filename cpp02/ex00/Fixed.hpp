@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 20:25:23 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/02 21:14:33 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/03 12:18:40 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ class Fixed
 {
 	private:
 		int					_value;
-		const static int	bits = 8;
+		const static int	_bits = 8;
+
 	public:
 		Fixed( void );
-		~Fixed( void );
 		Fixed( const Fixed& fixed );
 		Fixed& operator=( const Fixed& fixed );
+		~Fixed( void );
+
 		int		getRawBits( void ) const;
 		void	setRawBits( const int raw );
 };
