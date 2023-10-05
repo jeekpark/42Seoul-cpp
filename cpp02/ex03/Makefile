@@ -3,20 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/02 20:21:46 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/02 20:24:58 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/05 16:34:04 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	run
 
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRCS		=	main.cpp		\
-				Fixed.cpp		
+				Fixed.cpp		\
+				Point.cpp		\
+				bsp.cpp			
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp

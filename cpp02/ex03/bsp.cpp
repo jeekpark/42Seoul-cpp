@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsp.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:51:11 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/05 00:40:31 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:02:00 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static Fixed	_sqrt( Fixed sq )
 	if ( sq < 0 ) return -1;
 	if ( sq == 0 || sq == 1 ) return sq;
 
-	Fixed	tolerance( 0.000001f );
+	Fixed	tolerance( 0.0001f );
 	Fixed	x = sq;
 	Fixed	prevX( 0 );
 

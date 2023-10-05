@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 21:05:32 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/04 21:12:41 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:18:29 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Fixed::Fixed( const Fixed& fixed )
 Fixed::Fixed( const int num ) : _value( num << this->_bits )
 {}
 
-Fixed::Fixed( const float num ) : _value( roundf(num * pow( 2, this->_bits )) )
+Fixed::Fixed( const float num ) : _value( roundf(num * this->_pow_int( 2, this->_bits )) )
 {}
 
 
@@ -158,7 +158,7 @@ void	Fixed::setRawBits( const int raw )
 
 float	Fixed::toFloat( void ) const
 {
-	return this->_value / pow( 2, this->_bits );
+	return (float)this->_value / (float)this->_pow_int( 2, this->_bits );
 }
 
 int		Fixed::toInt( void ) const
@@ -169,4 +169,14 @@ int		Fixed::toInt( void ) const
 std::ostream&	operator<<( std::ostream& str, const Fixed& fixed )
 {
 	return str << fixed.toFloat();
+}
+
+int	Fixed::_pow_int( int base, int exponent ) const
+{
+	int	res = 1;
+	if ( exponent == 0 ) return 1;
+	else if ( exponent < 0 ) return 0;
+	for ( int i = 0; i < exponent; i++ )
+		res *= base;
+	return res;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 20:25:23 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/04 21:06:17 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:16:36 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Fixed
 	private:
 		int					_value;
 		const static int	_bits = 8;
-
+		int					_pow_int( int base, int exponent ) const;
 	public:
 		Fixed( void );
 		Fixed( const Fixed& fixed );

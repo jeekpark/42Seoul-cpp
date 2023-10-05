@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:38:15 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/04 23:50:55 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:20:40 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ Point::~Point( void )
 
 Fixed	Point::getX( void ) const
 {
-	return _x;
+	return this->_x;
 }
 
 Fixed	Point::getY( void ) const
 {
-	return _y;
+	return this->_y;
 }
 
