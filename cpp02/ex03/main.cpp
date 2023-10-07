@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 20:25:03 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/05 17:02:12 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:11:42 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 int main( void )
 {
-	bool a = bsp( Point( 0.0f, 0.0f ), Point( 1.0f, 0.0f ), 
-					Point( 0.0f, 1.0f ), Point( 10.0f, 10.0f ) );
-	if ( a == true ) std::cout << "true" << std::endl;
-	
+	if ( bsp( Point( 0.0f, 0.0f ), Point( 0.0f, 0.0f ),
+					Point( 0.0f, 10.0f ), Point( 0.0f, 0.0f ) ) == true)
+		std::cout << "true" << std::endl;
+	else
+		std::cout << "fasle" << std::endl;
+
 	return 0;
 }

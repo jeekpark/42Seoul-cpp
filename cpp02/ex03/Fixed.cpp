@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 21:05:32 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/05 16:18:29 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/07 15:59:09 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@ bool	Fixed::operator!=( const Fixed& fixed ) const
 
 Fixed	Fixed::operator+( const Fixed& fixed ) const
 {
-	return this->toFloat() + fixed.toFloat();
+	return Fixed( this->toFloat() + fixed.toFloat() );
 }
 
 Fixed	Fixed::operator-( const Fixed& fixed ) const
 {
-	return this->toFloat() - fixed.toFloat();
+	return Fixed( this->toFloat() - fixed.toFloat() );
 }
 
 Fixed	Fixed::operator*( const Fixed& fixed ) const
 {
-	return this->toFloat() * fixed.toFloat();
+	return Fixed( this->toFloat() * fixed.toFloat() );
 }
 
 Fixed	Fixed::operator/( const Fixed& fixed ) const
 {
-	return this->toFloat() / fixed.toFloat();
+	return Fixed( this->toFloat() / fixed.toFloat() );
 }
 
 Fixed&	Fixed::operator++( void )

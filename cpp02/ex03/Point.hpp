@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:32:51 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/05 00:40:43 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/07 12:24:34 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ class Point
 		const Fixed		_y;
 	public:
 		Point( void );
-		Point( const float x, const float y);
+		Point( const float x, const float y );
+		Point( const Fixed x, const Fixed y );
 		Point( const Point& point );
 		Point&	operator=( const Point& point );
 		~Point( void );

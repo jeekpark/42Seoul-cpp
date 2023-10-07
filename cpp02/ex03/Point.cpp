@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:38:15 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/05 16:20:40 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/07 16:12:24 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ Point::Point( void ) : _x( 0 ), _y( 0 )
 {}
 
 Point::Point( const float x, const float y ) : _x( x ), _y( y )
+{}
+
+Point::Point( const Fixed x, const Fixed y ) : _x( x ), _y( y )
 {}
 
 Point::Point( const Point& point ) : _x( point.getX() ), _y( point.getY() )
