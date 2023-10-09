@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/07 20:25:59 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/09 16:56:33 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/09 14:46:02 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/09 17:49:38 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#pragma once
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-int main(void)
+# include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap
 {
-	ScavTrap	bob("Bob");
-	std::cout << std::endl;
+	public:
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(const FragTrap& FragTrap);
+		FragTrap&	operator=(const FragTrap& FragTrap);
+		~FragTrap(void);
 
+		void	highFivesGuys(void);
+};
 
-	bob.attack("Pawn");
-	bob.guardGate();
-	std::cout << std::endl;
-
-
-	ClapTrap*	ptr = &bob;
-	ptr->attack("Queen");
-	std::cout << std::endl;
-
-	bob.takeDamage(95);
-	bob.takeDamage(5);
-	bob.takeDamage(3);
-	bob.beRepaired(100);
-	std::cout << std::endl;
-	return 0;
-}
+#endif

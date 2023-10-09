@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 18:08:17 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/07 20:39:47 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:44:37 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& clapTrap)
 	this->_hitPoints = clapTrap._hitPoints;
 	this->_energyPoints = clapTrap._energyPoints;
 	this->_attackDamage = clapTrap._attackDamage;
-	return *this;
 	std::cout << "Constructed: " << this->_name << std::endl;
+	return *this;
 }
 
 ClapTrap::~ClapTrap(void)
