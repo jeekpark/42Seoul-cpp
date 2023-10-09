@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:46:02 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/09 17:49:38 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:35:47 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	public:
 		FragTrap(void);

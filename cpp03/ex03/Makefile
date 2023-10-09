@@ -6,16 +6,16 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/07 20:28:42 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/09 18:03:02 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/09 20:30:32 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	run
 
 CXX			=	c++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -Wshadow
 
-SRCS		=	main.cpp ClapTrap.cpp FragTrap.cpp DiamondTrap.cpp
+SRCS		=	main.cpp ClapTrap.cpp FragTrap.cpp DiamondTrap.cpp ScavTrap.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp
