@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:55:31 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/07 22:18:30 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:31:23 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ class ClapTrap
 		unsigned int	_energyPoints;
 		unsigned int	_attackDamage;
 	public:
-		ClapTrap(void);
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap& clapTrap);
-		ClapTrap&	operator=(const ClapTrap& clapTrap);
-		~ClapTrap(void);
+						ClapTrap(void);
+						ClapTrap(std::string name);
+						ClapTrap(const ClapTrap& clapTrap);
+		ClapTrap&		operator=(const ClapTrap& clapTrap);
+		virtual 		~ClapTrap(void);
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		virtual void	attack(const std::string& target);
+		void			takeDamage(unsigned int amount);
+		void			beRepaired(unsigned int amount);
 };
 
 #endif
