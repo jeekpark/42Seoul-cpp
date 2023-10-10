@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 20:25:59 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/09 21:21:11 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/10 12:05:40 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,11 @@
 int main(void)
 {
 	DiamondTrap	temp("Bob");
-	DiamondTrap bob = temp;
-	std::cout << std::endl;
 
+	DiamondTrap	bob = temp ;
 	bob.printStatus();
-	std::cout << std::endl;
 
 	bob.whoAmI();
-	std::cout << std::endl;
-
-	bob.attack("you");
-	std::cout << std::endl;
-
+	bob.attack("hello");
 	return 0;
 }
