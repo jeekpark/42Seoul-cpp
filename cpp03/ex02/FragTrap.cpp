@@ -30,7 +30,7 @@ FragTrap::FragTrap(std::string name)
 	std::cout <<  "FragTrap constructed: " << name << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap& fragTrap)
+FragTrap::FragTrap(const FragTrap& fragTrap) : ClapTrap(fragTrap)
 {
 	this->_name = fragTrap._name;
 	this->_hitPoints = fragTrap._hitPoints;

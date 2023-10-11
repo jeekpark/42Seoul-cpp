@@ -30,7 +30,7 @@ ScavTrap::ScavTrap(std::string name)
 	std::cout <<  "ScavTrap constructed: " << name << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& scavTrap)
+ScavTrap::ScavTrap(const ScavTrap& scavTrap) : ClapTrap(scavTrap)
 {
 	this->_name = scavTrap._name;
 	this->_hitPoints = scavTrap._hitPoints;
