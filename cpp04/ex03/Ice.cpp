@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 15:30:15 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/15 16:22:44 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/15 21:18:00 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Ice&	Ice::operator=(const Ice& copy)
 	return *this;
 }
 
-AMateria*	Ice::clone(void) const;
+AMateria*	Ice::clone(void) const
 {
 	return new Ice();
 }

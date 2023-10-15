@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 12:21:03 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/15 16:31:52 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/15 21:18:04 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class AMateria
 	protected:
 		std::string			_type;
 	public:
-							AMetaria(void);
+							AMateria(void);
 							AMateria(const std::string& type);//필수
 							AMateria(const AMateria& copy);
 		virtual				~AMateria(void);
@@ -34,6 +34,6 @@ class AMateria
 		virtual AMateria*	clone(void) const  = 0;
 		virtual void		use(ICharacter& target);
 
-}
+};
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:17:11 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/15 15:30:38 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/15 21:22:27 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
 
-# include "AMateria.hpp"
-
+# include <iostream>
+class AMateria;
 class ICharacter
 {
 	public:
@@ -24,6 +24,6 @@ class ICharacter
 		virtual void				equip(AMateria* m) = 0;
 		virtual void				unequip(int idx) = 0;
 		virtual void				use(int idx, ICharacter& target) = 0;
-}
+};
 
 #endif
