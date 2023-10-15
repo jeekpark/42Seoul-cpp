@@ -6,42 +6,30 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:10:21 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/14 20:38:56 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/15 11:44:28 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
-	const Animal*	meta	=	new Animal();
-	const Animal*	j 		=	new Dog();
-	const Animal*	i 		=	new Cat();
-	std::cout << meta->getType() << " " << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-
-	delete meta;
-	delete j;
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+	delete j;//should not create a leak
 	delete i;
 
-	std::cout << std::endl << std::endl << std::endl;
+	std::cout << "\n\n\n\n\n" << std::endl;
 
-	const WrongAnimal*	test	=	new WrongAnimal();
-	const WrongAnimal*	testCat	=	new WrongCat();
+	Brain* brain = new Brain();
+	brain->setIdeaByIndex("hello", 0);
 
-	std::cout << test->getType() << std::endl;
-	std::cout << testCat->getType() << std::endl;
-	test->makeSound();
-	testCat->makeSound();
-
-	delete test;
-	delete testCat;
+	Cat	cat = Cat(*brain);
+	Dog dog = Dog(*brain);
+	delete brain;
+	std::cout << "\n\n\n" << cat.getIdeaByIndex(0) << std::endl;
+	std::cout << dog.getIdeaByIndex(0) << "\n\n\n" << std::endl;
 
 	return 0;
 }

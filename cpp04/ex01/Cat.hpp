@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 13:52:06 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/14 17:33:20 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/10 14:35:12 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/14 22:22:31 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-# include <string>
-# include <iostream>
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-class Animal
+class Cat : public Animal
 {
-	protected:
-		std::string		_type;
+	private:
+		Brain*				_brain;
 	public:
-						Animal(void);
-						Animal(std::string type);
-						Animal(const Animal& animal);
-		Animal&			operator=(const Animal& animal);
-		virtual			~Animal(void);
+							Cat(void);
+							Cat(const Cat& cat);
+							Cat(const Brain& brain);
+		Cat&				operator=(const Cat& cat);
+							~Cat(void);
 
-		virtual void	makeSound(void) const;
-		std::string		getType(void) const;
+		void				makeSound(void) const;
+		void				setIdeaByIndex(const std::string& idea, int index);
+		const std::string&	getIdeaByIndex(int index) const;
 };
-
 
 #endif

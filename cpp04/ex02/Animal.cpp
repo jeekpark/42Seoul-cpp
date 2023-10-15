@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:58:52 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/14 17:33:17 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/15 11:52:18 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ Animal&	Animal::operator=(const Animal& animal)
 Animal::~Animal(void)
 {
 	std::cout << "Animal destructed " << _type << std::endl;
-}
-
-void	Animal::makeSound(void) const
-{
-	std::cout << "ANIMAL!!!! ANIMAL!!!!" << std::endl;
 }
 
 std::string	Animal::getType(void) const

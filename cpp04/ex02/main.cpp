@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 13:52:06 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/14 17:33:20 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/10 14:10:21 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/15 11:55:09 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#include "Dog.hpp"
+#include "Cat.hpp"
 
-# include <string>
-# include <iostream>
-
-class Animal
+int main()
 {
-	protected:
-		std::string		_type;
-	public:
-						Animal(void);
-						Animal(std::string type);
-						Animal(const Animal& animal);
-		Animal&			operator=(const Animal& animal);
-		virtual			~Animal(void);
-
-		virtual void	makeSound(void) const;
-		std::string		getType(void) const;
-};
-
-
-#endif
+	Animal a = Animal();
+	a.makeSound();
+	return 0;
+}

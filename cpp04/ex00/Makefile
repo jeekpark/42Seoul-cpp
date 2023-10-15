@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/10 13:48:58 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/10 16:04:57 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/14 20:38:18 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	run
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror
 
-SRCS		=	main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRCS		=	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp

@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 13:52:06 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/14 17:33:20 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/15 11:52:19 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Animal
 		Animal&			operator=(const Animal& animal);
 		virtual			~Animal(void);
 
-		virtual void	makeSound(void) const;
+		virtual void	makeSound(void) const = 0;
 		std::string		getType(void) const;
 };
 
