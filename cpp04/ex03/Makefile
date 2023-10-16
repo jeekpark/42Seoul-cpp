@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/15 20:32:50 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/16 17:34:36 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/17 00:00:15 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS		=	main.cpp		\
 				Ice.cpp			\
 				Character.cpp	\
 				Node.cpp		\
-				List.cpp
+				Floor.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

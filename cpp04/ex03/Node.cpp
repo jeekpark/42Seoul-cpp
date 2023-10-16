@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Node.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:07:25 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/16 17:38:58 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/16 22:58:27 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,4 @@ Node*	Node::getNextNode(void) const
 void	Node::setNextNode(Node* nextNode)
 {
 	_nextNode = nextNode;
-}
-
-void	Node::deleteContent(void)
-{
-	delete _content;
 }

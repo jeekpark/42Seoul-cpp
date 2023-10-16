@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:02:55 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/16 17:38:59 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/16 20:04:54 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #ifndef NODE_HPP
 # define NODE_HPP
+
+
 
 class Node
 {
@@ -30,7 +32,6 @@ class Node
 		void	setContent(void* content);
 		Node*	getNextNode(void) const;
 		void	setNextNode(Node* nextNode);
-		void	deleteContent(void);
 };
 
 #endif
