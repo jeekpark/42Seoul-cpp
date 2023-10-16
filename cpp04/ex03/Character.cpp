@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 19:51:53 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/15 21:28:09 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:06:08 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 Character::Character(void)
 {
-	_name = "<null>";
+	setName("<null>");
 	for (int i = 0; i < 4; ++i)
 		setSlotByIndex(NULL, i);
+	std::cout << "I AM " << getName() << "!" << std::endl;
 }
 
 Character::Character(const std::string& name)
 {
-	_name = name;
+	setName(name);
 	for (int i = 0; i < 4; ++i)
 		setSlotByIndex(NULL, i);
+	std::cout << "I AM " << getName() << "!" << std::endl;
 }
 
 Character::Character(const Character& copy)
 {
-	_name = copy.getName();
+	setName(copy.getName());
 	for (int i = 0; i < 4; ++i)
 	{
 		AMateria* temp = copy.getSlotByIndex(i);
@@ -37,25 +39,26 @@ Character::Character(const Character& copy)
 		else
 			setSlotByIndex(temp->clone(), i);
 	}
+	std::cout << "I AM " << getName() << "!" << std::endl;
 }
 
 Character::~Character(void)
 {
 	for (int i = 0; i < 4; ++i)
 	{
-		AMateria*	temp = getSlotByIndex(i);
-		if (temp != NULL)
-			delete temp; 
+		delete getSlotByIndex(i);
+		setSlotByIndex(NULL, i);
 	}
 }
 
 Character&	Character::operator=(const Character& copy)
 {
-	_name = copy.getName();
+	setName(copy.getName());
 	for (int i = 0; i < 4; ++i)
 	{
+		delete getSlotByIndex(i);
 		AMateria* temp = copy.getSlotByIndex(i);
-		if (temp == NULL)
+		if (temp == NULL) 
 			setSlotByIndex(NULL, i);
 		else
 			setSlotByIndex(temp->clone(), i);
@@ -82,17 +85,32 @@ const std::string&	Character::getName(void) const
 	return _name;
 }
 
+void	Character::setName(const std::string& name)
+{
+	_name = name;
+}
+
 void	Character::equip(AMateria* m)
 {
-
+	for (int i = 0; i < 4; ++i)
+		if (getSlotByIndex(i) == NULL)
+		{
+			setSlotByIndex(m, i);
+			return ;
+		}
 }
 
 void	Character::unequip(int idx)
 {
-
+	setSlotByIndex(NULL, idx);
 }
 
 void	Character::use(int idx, ICharacter& target)
 {
-	
+	if (0 <= idx && idx < 4)
+	{
+		AMateria*	temp = getSlotByIndex(idx);
+		if (temp != NULL)
+			getSlotByIndex(idx)->use(target);
+	}
 }

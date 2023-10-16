@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/15 20:32:50 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/15 21:22:01 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/16 17:34:36 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ CXXFLAGS	=	#-Wall -Wextra -Werror -std=c++98
 SRCS		=	main.cpp		\
 				AMateria.cpp	\
 				Ice.cpp			\
-				Character.cpp
+				Character.cpp	\
+				Node.cpp		\
+				List.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

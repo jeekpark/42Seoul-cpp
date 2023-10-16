@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 20:33:40 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/16 17:35:49 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/16 15:44:55 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/16 15:49:23 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
-#include "Character.hpp"
-#include "List.hpp"
-void aaa(void)
+#pragma once
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
+
+#include <string>
+
+class AMateria;
+class IMateriaSource
 {
-	system("leaks -q run");
-}
+	public:
+		virtual				~IMateriaSource(void) {}
+		virtual void		learnMateria(AMateria*) = 0;
+		virtual AMateria*	createMateria(const std::string& type) = 0;
+};
 
-int main(void)
-{
-	atexit(aaa);
-	
-	List* a = new List();
 
-	a->addNodeBack(new Ice());
-	a->addNodeBack(new Ice());
-	a->addNodeBack(new Ice());
-
-	delete a;
-	return 0;
-}
+#endif

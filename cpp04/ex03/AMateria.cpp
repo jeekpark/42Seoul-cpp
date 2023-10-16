@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 13:07:25 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/15 21:21:38 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:25:12 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ const std::string&	AMateria::getType(void) const
 
 void	AMateria::use(ICharacter& target)
 {
-	
+	std::cout << "This is abstract materia." << std::endl;
 }

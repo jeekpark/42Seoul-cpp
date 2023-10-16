@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 13:17:11 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/16 15:49:11 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/16 17:02:55 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/16 17:38:59 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef ICHARACTER_HPP
-# define ICHARACTER_HPP
+#ifndef NODE_HPP
+# define NODE_HPP
 
-#include <string>
-
-class AMateria;
-class ICharacter
+class Node
 {
+	private:
+		void*	_content;
+		Node*	_nextNode;
 	public:
-		virtual						~ICharacter() {}
-		virtual const std::string&	getName(void) const = 0;
-		virtual void				equip(AMateria* m) = 0;
-		virtual void				unequip(int idx) = 0;
-		virtual void				use(int idx, ICharacter& target) = 0;
+				Node(void);
+				Node(const Node& copy);
+				Node(void* content);
+				~Node(void);
+		Node&	operator=(const Node& copy);
+
+		void*	getContent(void) const;
+		void	setContent(void* content);
+		Node*	getNextNode(void) const;
+		void	setNextNode(Node* nextNode);
+		void	deleteContent(void);
 };
 
 #endif

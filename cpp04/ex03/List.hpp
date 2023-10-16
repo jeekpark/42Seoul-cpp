@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   List.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 20:33:40 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/16 17:35:49 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/16 17:00:11 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/16 17:34:13 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
-#include "Character.hpp"
-#include "List.hpp"
-void aaa(void)
+#pragma once
+#ifndef LIST_HPP
+# define LIST_HPP
+
+# include "Node.hpp"
+
+class List
 {
-	system("leaks -q run");
-}
+	private:
+		Node*	_head;
+	public:
+				List(void);
+				List(const List& copy);
+				~List(void);
+		List&	operator=(const List& copy);
 
-int main(void)
-{
-	atexit(aaa);
-	
-	List* a = new List();
+		Node*	getHead(void) const;
+		void	setHead(Node *head);
+		void	addNodeBack(void *content);
+		void	clearList(void);
+};
 
-	a->addNodeBack(new Ice());
-	a->addNodeBack(new Ice());
-	a->addNodeBack(new Ice());
-
-	delete a;
-	return 0;
-}
+#endif
