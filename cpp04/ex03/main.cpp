@@ -3,39 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 20:33:40 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/17 00:02:13 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:16:52 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
+#include "Cure.hpp"
 #include "Character.hpp"
-
-void aaa(void)
-{
-	system("leaks -q run");
-}
+#include "MateriaSource.hpp"
 
 int main(void)
 {
-	atexit(aaa);
-	
-	Character* me = new Character("me");
-	Character* target = new Character("police");
-	AMateria* tmp = new Ice();
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
 
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	me->use(0, *target);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
 	
-	me->unequip(0);
-	me->use(0, *target);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	bob->equip(src->createMateria("ice"));
+	bob->use(0, *me);
+	bob->unequip(0);
+	bob->use(0, *me);
 	
+	delete bob;
 	delete me;
-	delete target;
+	delete src;
 
-
-	std::cout << "\n\n" << std::endl;
 	return 0;
 }

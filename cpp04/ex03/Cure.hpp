@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Node.hpp                                           :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 17:02:55 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/17 08:59:45 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/17 10:51:15 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/17 10:53:03 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef NODE_HPP
-# define NODE_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
-class Node
+# include "AMateria.hpp"
+
+class Cure : public AMateria
 {
-	private:
-		void*	_content;
-		Node*	_nextNode;
 	public:
-				Node(void);
-				Node(const Node& copy);
-				Node(void* content);
-				~Node(void);
-		Node&	operator=(const Node& copy);
+					Cure(void);
+					Cure(const Cure& copy);
+					~Cure(void);
+		Cure&		operator=(const Cure& copy);
 
-		void*	getContent(void) const;
-		void	setContent(void* content);
-		Node*	getNextNode(void) const;
-		void	setNextNode(Node* nextNode);
+		AMateria*	clone(void) const;
+		void		use(ICharacter& target);
 };
+
 
 #endif

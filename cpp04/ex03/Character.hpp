@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 14:01:38 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/16 23:59:26 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/17 09:07:35 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ class Character : public ICharacter
 
 		AMateria*			getSlotByIndex(int index) const;
 		void				setSlotByIndex(AMateria* slot, int index);
-
 
 		void				equip(AMateria* m);
 		void				unequip(int idx);
