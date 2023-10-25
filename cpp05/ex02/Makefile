@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/25 12:43:06 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/25 21:36:53 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/25 19:40:31 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,5 +37,7 @@ fclean : clean
 re :
 	$(MAKE) fclean
 	$(MAKE) all
+
+
 
 .PHONY: all clean fclean re
