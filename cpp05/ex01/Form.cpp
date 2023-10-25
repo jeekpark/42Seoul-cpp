@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:42:32 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 18:06:21 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:21:47 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,26 @@ void	Form::validGrade(grade_t grade)
 		throw Form::GradeTooHighException();
 	if (150 < grade)
 		throw Form::GradeTooLowException();
+}
+
+
+
+/* etc */
+std::ostream&	operator<<(std::ostream& outStream, const Form& form)
+{
+	std::string	approval;
+	if (form.getIsSigned())
+		approval = "Signed";
+	else
+		approval = "Not Signed";
+	outStream
+		<< "Form name:\t\t\t"
+		<< form.getName()
+		<< "\nApproval:\t\t\t"
+		<< approval
+		<< "\nRequired grade to sign:\t\t"
+		<< (int)form.getGradeRequiredToSign()
+		<< "\nRequired grade to execute:\t"
+		<< (int)form.getGradeRequiredToExecute();
+	return outStream;
 }

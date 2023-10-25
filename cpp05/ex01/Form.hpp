@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:36:19 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 18:06:28 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:39:49 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ private:
 
 	static void			validGrade(grade_t grade);
 };
+
+std::ostream&	operator<<(std::ostream& outStream, const Form& form);
 
 #endif

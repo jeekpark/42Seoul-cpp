@@ -6,12 +6,12 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:56:26 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 18:04:29 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:32:04 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
+#include "Form.hpp"
 /* public */
 
 Bureaucrat::Bureaucrat(std::string name, grade_t grade)
@@ -57,6 +57,30 @@ void	Bureaucrat::decreaseGrade(void)
 {
 	setGrade(getGrade() + 1);
 }
+
+
+void	Bureaucrat::signForm(Form& form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << getName() << " signed " << form.getName() << "." << std::endl;
+	}
+	catch(const Form::DoubleSignException& e)
+	{
+		std::cout << getName() << " couldn't sign " << form.getName()
+			<< " because this form is already signed." << std::endl;
+	}
+	catch(const Form::GradeTooLowException& e)
+	{
+		std::cout << getName() << " couldn't sign " << form.getName()
+			<< " because " << getName() << "(grade: " << (int)getGrade() << ")"
+			<< " is below the required grade("
+			<< (int)form.getGradeRequiredToSign() << ") to sign." << std::endl;
+	}
+}
+
+
 
 /* private */
 
