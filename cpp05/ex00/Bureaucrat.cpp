@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:56:26 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 15:12:51 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:04:29 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* public */
 
-Bureaucrat::Bureaucrat(std::string name, uint8_t grade)
+Bureaucrat::Bureaucrat(std::string name, grade_t grade)
 : mName(name)
 {
 	setGrade(grade);
@@ -22,8 +22,9 @@ Bureaucrat::Bureaucrat(std::string name, uint8_t grade)
 
 Bureaucrat::Bureaucrat(const Bureaucrat& copy)
 : mName(copy.getName())
+, mGrade(copy.getGrade())
 {
-	setGrade(copy.getGrade());
+	// Empty function body
 }
 
 Bureaucrat::~Bureaucrat(void)
@@ -31,12 +32,18 @@ Bureaucrat::~Bureaucrat(void)
 	// Empty function body
 }
 
+Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
+{
+	(void)copy;
+	throw Bureaucrat::InvalidOperatorException();
+}
+
 const std::string&	Bureaucrat::getName(void) const
 {
 	return mName;
 }
 
-uint8_t	Bureaucrat::getGrade(void) const
+grade_t	Bureaucrat::getGrade(void) const
 {
 	return mGrade;
 }
@@ -53,23 +60,13 @@ void	Bureaucrat::decreaseGrade(void)
 
 /* private */
 
-Bureaucrat::Bureaucrat(void)
-: mName("<null>")
-{
-	throw Bureaucrat::InvalidConstructorException();
-}
 
-Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
-{
-	(void)copy;
-	throw Bureaucrat::InvalidOperatorException();
-}
 
-void	Bureaucrat::setGrade(uint8_t grade)
+void	Bureaucrat::setGrade(grade_t grade)
 {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
-	else if (grade > 150)
+	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	mGrade = grade;
 }
