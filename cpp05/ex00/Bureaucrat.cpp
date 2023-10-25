@@ -6,12 +6,14 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 22:01:40 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 00:17:20 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:55:54 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+
+/* public */
 
 Bureaucrat::Bureaucrat(std::string name, uint8_t grade)
 : mName(name)
@@ -55,7 +57,18 @@ void	Bureaucrat::decreaseGrade(void)
 
 
 
+/* private */
 
+Bureaucrat::Bureaucrat(void)
+: mName("<null>")
+{
+	throw Bureaucrat::InvalidConstructorException();
+}
+
+Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
+{
+	throw Bureaucrat::InvalidOperatorException();
+}
 
 void	Bureaucrat::setGrade(uint8_t grade)
 {
@@ -68,13 +81,3 @@ void	Bureaucrat::setGrade(uint8_t grade)
 
 
 
-Bureaucrat::Bureaucrat(void)
-: mName("<null>")
-{
-	setGrade(150);
-}
-
-Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
-{
-	return *this;
-}
