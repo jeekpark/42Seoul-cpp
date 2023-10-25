@@ -5,28 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 22:11:49 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 12:00:34 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/25 12:56:46 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/25 15:12:53 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-
 int main()
 {
-	Bureaucrat a("jeekpark", 3);
-	a.increaseGrade();
-	a.increaseGrade();
-	try
+	/**
+	 * @brief test for Bureaucrat::GradeTooHighException
+	 * 
+	 */
 	{
-		a.increaseGrade();
+		Bureaucrat employee("jeekpark", 10);
+		try
+		{
+			for (;;)
+			{
+				employee.increaseGrade();
+				std::cout << employee << std::endl;
+			}
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
-	catch(const std::exception& e)
+
+	/**
+	 * @brief test for Bureaucrat::GradeTooLowException
+	 * 
+	 */
 	{
-		std::cerr << e.what() << '\n';
+		Bureaucrat employee("jeekpark", 140);
+		try
+		{
+			for (;;)
+			{
+				employee.decreaseGrade();
+				std::cout << employee << std::endl;
+			}
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
-	
-	//a.increaseGrade();
-	std::cout << (int)a.getGrade() << std::endl;
+
+	return 0;
 }

@@ -1,3 +1,4 @@
 .vsc*
 .DS*
 *.o
+a.out

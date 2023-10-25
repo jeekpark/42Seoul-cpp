@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:22:23 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 11:59:17 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/25 15:14:29 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 class Bureaucrat
 {
 public:
+	class GradeTooHighException			: public std::exception {};
+	class GradeTooLowException			: public std::exception {};
+	class InvalidConstructorException	: public std::exception {};
+	class InvalidOperatorException		: public std::exception {};
+	
 						Bureaucrat(std::string name, uint8_t grade);
 						Bureaucrat(const Bureaucrat& copy);
 						~Bureaucrat(void);
@@ -32,13 +37,7 @@ public:
 
 	void				increaseGrade(void);
 	void				decreaseGrade(void);
-
-	class GradeTooHighException : public std::exception {};
-	class GradeTooLowException : public std::exception {};
-	class InvalidConstructorException : public std::exception {};
-	class InvalidOperatorException : public std::exception {};
 private:
-	
 	const std::string	mName;
 	uint8_t				mGrade;
 
@@ -46,8 +45,8 @@ private:
 	Bureaucrat&			operator=(const Bureaucrat& copy);
 	
 	void				setGrade(uint8_t grade);
-
-
 };
+
+std::ostream&	operator<<(std::ostream& outStream, const Bureaucrat& bureaucrat);
 
 #endif

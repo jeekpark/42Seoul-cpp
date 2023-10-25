@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 22:01:40 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 11:55:54 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/10/25 12:56:26 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/10/25 15:12:51 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-
 
 /* public */
 
@@ -32,7 +31,6 @@ Bureaucrat::~Bureaucrat(void)
 	// Empty function body
 }
 
-
 const std::string&	Bureaucrat::getName(void) const
 {
 	return mName;
@@ -42,7 +40,6 @@ uint8_t	Bureaucrat::getGrade(void) const
 {
 	return mGrade;
 }
-
 
 void	Bureaucrat::increaseGrade(void)
 {
@@ -54,9 +51,6 @@ void	Bureaucrat::decreaseGrade(void)
 	setGrade(getGrade() + 1);
 }
 
-
-
-
 /* private */
 
 Bureaucrat::Bureaucrat(void)
@@ -67,6 +61,7 @@ Bureaucrat::Bureaucrat(void)
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& copy)
 {
+	(void)copy;
 	throw Bureaucrat::InvalidOperatorException();
 }
 
@@ -79,5 +74,10 @@ void	Bureaucrat::setGrade(uint8_t grade)
 	mGrade = grade;
 }
 
+/* etc */
 
-
+std::ostream&	operator<<(std::ostream& outStream, const Bureaucrat& bureaucrat)
+{
+	outStream << bureaucrat.getName() << ", bureaucrat grade " << (int)bureaucrat.getGrade() << ".";
+	return outStream;
+}
