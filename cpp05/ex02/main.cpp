@@ -6,12 +6,13 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 12:56:46 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/27 20:40:12 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/27 20:55:08 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
 
@@ -40,6 +41,21 @@ int main()
 	{
 		Bureaucrat	staff("Polar", 7);
 		AForm*		paper = new RobotomyRequestForm("jeekpark");
+
+		staff.signForm(*paper);
+		staff.exectueForm(*paper);
+		std::cout << *paper << std::endl;
+
+		std::cout << std::endl;
+	}
+
+	/**
+	 * @brief test for RobotomyRequestForm
+	 * 
+	 */
+	{
+		Bureaucrat	staff("Polar", 5);
+		AForm*		paper = new PresidentialPardonForm("jeekpark");
 
 		staff.signForm(*paper);
 		staff.exectueForm(*paper);

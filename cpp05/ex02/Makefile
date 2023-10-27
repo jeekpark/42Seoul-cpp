@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/25 12:43:06 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/27 20:40:41 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/27 20:53:59 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CXXFLAGS	=	-Wall -Wextra -Werror
 SRCS		=	main.cpp					\
 				Bureaucrat.cpp AForm.cpp	\
 				ShrubberyCreationForm.cpp	\
-				RobotomyRequestForm.cpp
+				RobotomyRequestForm.cpp		\
+				PresidentialPardonForm.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp
