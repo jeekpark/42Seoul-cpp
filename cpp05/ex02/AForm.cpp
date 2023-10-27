@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:42:32 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 18:21:47 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:45:51 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 /* public */
-Form::Form
+AForm::AForm
 (
 	std::string	name,
 	grade_t		gradeRequiredToSign,
@@ -24,12 +24,12 @@ Form::Form
 , mGradeRequiredToExecute(gradeRequiredToExecute)
 {
 	
-	Form::validGrade(mGradeRequiredToSign);
-	Form::validGrade(mGradeRequiredToExecute);
+	AForm::validGrade(mGradeRequiredToSign);
+	AForm::validGrade(mGradeRequiredToExecute);
 	setIsSigned(false);
 }
 
-Form::Form(const Form& copy)
+AForm::AForm(const AForm& copy)
 : mName(copy.getName())
 , mIsSigned(copy.getIsSigned())
 , mGradeRequiredToSign(copy.getGradeRequiredToSign())
@@ -38,64 +38,64 @@ Form::Form(const Form& copy)
 	// Empty function body
 }
 
-Form::~Form(void)
+AForm::~AForm(void)
 {
 	// Empty function body
 }
 
-Form&	Form::operator=(const Form& copy)
+AForm&	AForm::operator=(const AForm& copy)
 {
 	(void)copy;
-	throw Form::InvalidOperatorException();
+	throw AForm::InvalidOperatorException();
 }
 
-const std::string&	Form::getName(void) const
+const std::string&	AForm::getName(void) const
 {
 	return mName;
 }
 
-bool	Form::getIsSigned(void) const
+bool	AForm::getIsSigned(void) const
 {
 	return mIsSigned;
 }
 
-grade_t	Form::getGradeRequiredToSign(void) const
+grade_t	AForm::getGradeRequiredToSign(void) const
 {
 	return mGradeRequiredToSign;
 }
 
-grade_t Form::getGradeRequiredToExecute(void) const
+grade_t AForm::getGradeRequiredToExecute(void) const
 {
 	return mGradeRequiredToExecute;
 }
 
-void	Form::beSigned(const Bureaucrat& bureaucrat)
+void	AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (mIsSigned)
-		throw Form::DoubleSignException();
+		throw AForm::DoubleSignException();
 	if (bureaucrat.getGrade() > mGradeRequiredToSign)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	setIsSigned(true);
 }
 
 /* private */
-void	Form::setIsSigned(bool b)
+void	AForm::setIsSigned(bool b)
 {
 	mIsSigned = b;
 }
 
-void	Form::validGrade(grade_t grade)
+void	AForm::validGrade(grade_t grade)
 {
 	if (grade < 1)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	if (150 < grade)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 }
 
 
 
 /* etc */
-std::ostream&	operator<<(std::ostream& outStream, const Form& form)
+std::ostream&	operator<<(std::ostream& outStream, const AForm& form)
 {
 	std::string	approval;
 	if (form.getIsSigned())

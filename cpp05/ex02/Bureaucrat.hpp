@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 18:22:23 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/25 19:39:56 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:26:54 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef unsigned char	uint8_t;
 typedef uint8_t			grade_t;
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -41,7 +41,9 @@ public:
 
 	void				increaseGrade(void);
 	void				decreaseGrade(void);
-	void				signForm(Form& form) const;
+	void				signForm(AForm& form) const;
+	void				exectueForm(const AForm& form) const;
+	
 private:
 	const std::string	mName;
 	grade_t				mGrade;

@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/25 12:43:06 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/25 19:40:31 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/27 20:40:41 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME		=	run
 
 CXXFLAGS	=	-Wall -Wextra -Werror
 
-SRCS		=	main.cpp Bureaucrat.cpp Form.cpp
+SRCS		=	main.cpp					\
+				Bureaucrat.cpp AForm.cpp	\
+				ShrubberyCreationForm.cpp	\
+				RobotomyRequestForm.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp
@@ -32,7 +35,7 @@ clean :
 	$(RM) $(OBJS)
 
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) *_shrubbery
 
 re :
 	$(MAKE) fclean
