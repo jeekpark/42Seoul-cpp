@@ -5,24 +5,27 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/25 12:43:06 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/28 00:13:39 by jeekpark         ###   ########.fr        #
+#    Created: 2023/10/28 00:11:52 by jeekpark          #+#    #+#              #
+#    Updated: 2023/10/28 00:15:25 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	run
-
+NAME		=	convert
 
 CXXFLAGS	=	-Wall -Wextra -Werror
 
-SRCS		=	main.cpp Bureaucrat.cpp
+SRCS		=	main.cpp				
+
 OBJS		=	$(SRCS:.cpp=.o)
 
-
-
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 
 all : $(NAME)
+
+$(NAME) : $(OBJS)
+	$(CXX) $(LDFLAGS) $^ -o $@
 
 clean :
 	$(RM) $(OBJS)
@@ -33,11 +36,5 @@ fclean : clean
 re :
 	$(MAKE) fclean
 	$(MAKE) all
-
-%.o : %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-$(NAME) : $(OBJS)
-	$(CXX) $(LDFLAGS) $^ -o $@
 
 .PHONY: all clean fclean re
