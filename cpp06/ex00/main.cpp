@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 23:57:43 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/28 00:21:11 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/10/29 17:27:41 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int main(int argc, char **argv)
 {
-	if (argc < 2)
-		std::cout << "error: usage: " << argv[0] << " [literal]." << std::endl;
 
+	ScalarConverter::convert("hllow");
+	std::cout << ScalarConverter::getLiteral() << std::endl;
 	return 0;
 }
