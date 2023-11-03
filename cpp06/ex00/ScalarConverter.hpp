@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:05:03 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/29 17:27:42 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/03 23:47:33 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,41 @@
 #define SCALARCONVERTER_HPP
 
 #include <string>
+#include <iostream>
 
-enum eType
-{
-	Char,
-	Int,
-	Float,
-	Double,
-	None
-};
 
 class ScalarConverter
 {
 public:
 	static void					convert(const std::string& literal);
-
-	static const std::string&	getLiteral(void);
-	static char					getChar(void);
-	static int					getInt(void);
-	static float				getFloat(void);
-	static double				getDouble(void);
+	static void					printCharType(void);
+	static void					printIntType(void);
 
 private:
+	enum eActualType
+	{
+		CHAR,
+		INT,
+		FLOAT,
+		DOUBLE,
+		NONE
+	};
+	
 	static std::string			mLiteral;
+	
+	static int					mActualType; 
 	static char					mChar;
 	static int					mInt;
 	static float				mFloat;
 	static double				mDouble;
-
-	static int					mActualType; 
+	
+	static bool					mCharNotAscii;
+	static bool					mIntOverflow;
+	static bool					mFloatNotANumber;
+	static bool					mDoubleNotANumber;
+	static const std::string&	getLiteral(void);
+	static void					setActualType(void);
+	static void					setOthersType(void);
 };
 
 #endif

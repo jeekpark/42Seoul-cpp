@@ -6,15 +6,16 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 00:11:52 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/28 00:15:25 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/10/31 16:21:57 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	convert
 
-CXXFLAGS	=	-Wall -Wextra -Werror
+CXXFLAGS	=	#-Wall -Wextra -Werror -std=c++98
 
-SRCS		=	main.cpp				
+SRCS		=	main.cpp			\
+				ScalarConverter.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 

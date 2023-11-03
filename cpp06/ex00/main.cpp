@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 23:57:43 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/29 17:27:41 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/03 23:52:14 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int main(int argc, char **argv)
 {
-
-	ScalarConverter::convert("hllow");
-	std::cout << ScalarConverter::getLiteral() << std::endl;
+	ScalarConverter::convert(argv[1]);
+	ScalarConverter::printCharType();
+	ScalarConverter::printIntType();
 	return 0;
 }
