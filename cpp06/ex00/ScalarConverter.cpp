@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:50:02 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/04 17:11:05 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:56:43 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,12 +201,13 @@ void	ScalarConverter::setActualType(void)
 				|| mLiteral == std::string("inff"))
 			{
 				mFloatError = true;
+				mFloat = 0;
 			}
 			else
 			{
 				mFloatError = false;
+				mFloat = static_cast<float>(strtod(mLiteral.c_str(), NULL));
 			}
-			mFloat = static_cast<float>(strtod(mLiteral.c_str(), NULL));
 			break;
 		case DOUBLE:
 			if (mLiteral == std::string("nan")
@@ -215,12 +216,13 @@ void	ScalarConverter::setActualType(void)
 				|| mLiteral == std::string("inf"))
 			{
 				mDoubleError = true;
+				mDouble = 0;
 			}
 			else
 			{
 				mDoubleError = false;
+				mDouble = strtod(mLiteral.c_str(), NULL);
 			}
-			mDouble = strtod(mLiteral.c_str(), NULL);
 			break;
 		default:
 			break;
