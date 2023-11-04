@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:50:02 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/03 23:51:53 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:11:05 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	ScalarConverter::printCharType(void)
 {
 	std::cout << "char: ";
 	if (mActualType == NONE
-		|| mFloatNotANumber == true
-		|| mDoubleNotANumber == true)
+		|| mFloatError == true
+		|| mDoubleError == true)
 	{
 		std::cout << "impossible" <<  std::endl;
 	}
@@ -49,8 +49,8 @@ void	ScalarConverter::printIntType(void)
 {
 	std::cout << "int: ";
 	if (mActualType == NONE
-		|| mFloatNotANumber == true
-		|| mDoubleNotANumber == true
+		|| mFloatError == true
+		|| mDoubleError == true
 		|| mIntOverflow == true)
 	{
 		std::cout << "impossible" << std::endl;
@@ -73,8 +73,8 @@ double			ScalarConverter::mDouble;
 
 bool			ScalarConverter::mCharNotAscii;
 bool			ScalarConverter::mIntOverflow;
-bool			ScalarConverter::mFloatNotANumber;
-bool			ScalarConverter::mDoubleNotANumber;
+bool			ScalarConverter::mFloatError;
+bool			ScalarConverter::mDoubleError;
 
 const std::string& ScalarConverter::getLiteral(void)
 {
@@ -104,7 +104,7 @@ static bool isIntType(const std::string& literal)
 {
 	char* endPtr = NULL;
 	std::strtol(literal.c_str(), &endPtr, 10);
-	if (endPtr == NULL)
+	if (endPtr[0] == '\0')
 	{
 		return true;
 	}
@@ -118,7 +118,7 @@ static bool	isFloatType(const std::string& literal)
 {
 	char* endPtr = NULL;
 	std::strtod(literal.c_str(), &endPtr);
-	if (endPtr[0] == 'f' && endPtr[1] == '\0')
+	if (endPtr[0] == 'f' && endPtr[1] == '\0' && literal.length() > 1)
 	{
 		return true;
 	}
@@ -132,7 +132,7 @@ static bool	isDoubleType(const std::string& literal)
 {
 	char* endPtr = NULL;
 	std::strtod(literal.c_str(), &endPtr);
-	if (endPtr[0] == '\0')
+	if (endPtr[0] == '\0' && literal.length() != 0)
 	{
 		return true;
 	}
@@ -170,7 +170,7 @@ void	ScalarConverter::setActualType(void)
 	{
 		long longValue;
 		case CHAR:
-			if (iscntrl(mLiteral[1]) == false)
+			if (iscntrl(mLiteral[1]) == false && mLiteral[1] > 0)
 			{
 				mChar = mLiteral[1];
 				mCharNotAscii = false;
@@ -183,40 +183,42 @@ void	ScalarConverter::setActualType(void)
 			break;
 		case INT:
 			longValue = strtol(mLiteral.c_str(), NULL, 10);
-			if ((std::numeric_limits<int>::min() <= longValue && longValue <= std::numeric_limits<int>::max())
-				== false)
-			{
-				mIntOverflow = true;
-			}
-			else
+			if (std::numeric_limits<int>::min() <= longValue && longValue <= std::numeric_limits<int>::max())
 			{
 				mIntOverflow = false;
-			}
-			mInt = static_cast<int>(longValue);
-			break;
-		case FLOAT:
-			if (mLiteral == std::string("nan")
-				|| mLiteral == std::string("+nan")
-				|| mLiteral == std::string("-nan"))
-			{
-				mFloatNotANumber = true;
+				mInt = static_cast<int>(longValue);
 			}
 			else
 			{
-				mFloatNotANumber = false;
+				mIntOverflow = true;
+				mInt = 0;
+			}
+			break;
+		case FLOAT:
+			if (mLiteral == std::string("nanf")
+				|| mLiteral == std::string("+inff")
+				|| mLiteral == std::string("-inff")
+				|| mLiteral == std::string("inff"))
+			{
+				mFloatError = true;
+			}
+			else
+			{
+				mFloatError = false;
 			}
 			mFloat = static_cast<float>(strtod(mLiteral.c_str(), NULL));
 			break;
 		case DOUBLE:
 			if (mLiteral == std::string("nan")
-				|| mLiteral == std::string("+nan")
-				|| mLiteral == std::string("-nan"))
+				|| mLiteral == std::string("+inf")
+				|| mLiteral == std::string("-inf")
+				|| mLiteral == std::string("inf"))
 			{
-				mDoubleNotANumber = true;
+				mDoubleError = true;
 			}
 			else
 			{
-				mDoubleNotANumber = false;
+				mDoubleError = false;
 			}
 			mDouble = strtod(mLiteral.c_str(), NULL);
 			break;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/29 15:05:03 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/03 23:47:33 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:11:07 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ private:
 	
 	static bool					mCharNotAscii;
 	static bool					mIntOverflow;
-	static bool					mFloatNotANumber;
-	static bool					mDoubleNotANumber;
+	static bool					mFloatError;
+	static bool					mDoubleError;
 	static const std::string&	getLiteral(void);
 	static void					setActualType(void);
 	static void					setOthersType(void);
