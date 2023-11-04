@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 18:19:53 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/26 20:49:09 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/04 12:41:54 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 	if (getIsSigned() == false)
 		throw AForm::NotSignedException();
 
-	std::ofstream file(getTarget() + std::string("_shrubbery"));
+	std::ofstream file((getTarget() + std::string("_shrubbery")).c_str());
 	if (file.fail())
 		throw ShrubberyCreationForm::FailedToOpenFile();
 	file << "  \\/\n__|___\n";

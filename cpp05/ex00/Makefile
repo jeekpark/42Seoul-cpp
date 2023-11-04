@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
+#    By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/25 12:43:06 by jeekpark          #+#    #+#              #
-#    Updated: 2023/10/28 00:13:39 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/11/04 12:41:20 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	run
 
 
-CXXFLAGS	=	-Wall -Wextra -Werror
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 SRCS		=	main.cpp Bureaucrat.cpp
 OBJS		=	$(SRCS:.cpp=.o)
