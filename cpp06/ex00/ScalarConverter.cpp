@@ -6,12 +6,13 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 01:03:34 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/05 20:58:20 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:08:56 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ScalarConverter.hpp"
 
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -176,6 +177,10 @@ void	ScalarConverter::printFloat(void)
 		{
 			std::cout << std::fixed << std::setprecision(std::numeric_limits<float>::digits10) << static_cast<float>(doubleValue) << "f" << std::endl;
 		}
+		else if (mLiteral == std::string("nan") || mLiteral == std::string("+inf") || mLiteral == std::string("-inf"))
+		{
+			std::cout << mLiteral << "f" << std::endl;
+		}
 		else
 		{
 			std::cout << "impossible" << std::endl;
@@ -253,8 +258,7 @@ bool	ScalarConverter::isFloat(void)
 {
 	if (mLiteral == std::string("nanf")
 		|| mLiteral == std::string("+inff")
-		|| mLiteral == std::string("-inff")
-		|| mLiteral == std::string("inff"))
+		|| mLiteral == std::string("-inff"))
 	{
 		return true;
 	}
@@ -292,8 +296,7 @@ bool	ScalarConverter::isDouble(void)
 {
 	if (mLiteral == std::string("nan")
 		|| mLiteral == std::string("+inf")
-		|| mLiteral == std::string("-inf")
-		|| mLiteral == std::string("inf"))
+		|| mLiteral == std::string("-inf"))
 	{
 		return true;
 	}
