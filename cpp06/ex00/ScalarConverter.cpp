@@ -13,6 +13,7 @@
 #include "./ScalarConverter.hpp"
 
 #include <cmath>
+#include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -29,7 +30,7 @@ void	ScalarConverter::printChar(void)
 	std::cout << "char: ";
 	if (isChar())
 	{
-		if ((0 <= mLiteral[1] && mLiteral[1] <= 127)
+		if ((0 <= static_cast<int>(mLiteral[1]))
 			&& std::iscntrl(static_cast<int>(mLiteral[1])) == false)
 		{
 			std::cout << '\'' << mLiteral[1] << '\'' << std::endl;
