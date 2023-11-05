@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 15:50:02 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/04 17:56:43 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/11/05 01:03:34 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/11/05 20:58:20 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
-#include <cctype>
-#include <cstdlib>
+#include "./ScalarConverter.hpp"
+
+#include <iomanip>
 #include <iostream>
 #include <limits>
 
@@ -21,76 +21,207 @@
 void	ScalarConverter::convert(const std::string& literal)
 {
 	mLiteral = literal;
-	setActualType();
-	setOthersType();
 }
 
-
-void	ScalarConverter::printCharType(void)
+void	ScalarConverter::printChar(void)
 {
 	std::cout << "char: ";
-	if (mActualType == NONE
-		|| mFloatError == true
-		|| mDoubleError == true)
+	if (isChar())
 	{
-		std::cout << "impossible" <<  std::endl;
+		if ((0 <= mLiteral[1] && mLiteral[1] <= 127)
+			&& std::iscntrl(static_cast<int>(mLiteral[1])) == false)
+		{
+			std::cout << '\'' << mLiteral[1] << '\'' << std::endl;
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
 	}
-	else if (iscntrl(mChar) == true)
+	else if (isInt())
 	{
-		std::cout << "Non displayable" << std::endl;
+		long longValue = std::strtol(mLiteral.c_str(), NULL, 10);
+		int intValue = static_cast<int>(longValue);
+		if (static_cast<int>(std::numeric_limits<char>::min()) <= intValue
+			&& intValue <= static_cast<int>(std::numeric_limits<char>::max()))
+		{
+			if (iscntrl(intValue) == false
+				&& (0 <= intValue && intValue < 128))
+			{
+				std::cout << '\'' << static_cast<char>(intValue) << '\'' << std::endl;
+			}
+			else 
+			{
+				std::cout << "Non displayable" << std::endl;
+			}
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
+	}
+	else if (isFloat())
+	{
+		double doubleValue = std::strtod(mLiteral.c_str(), NULL);
+		float floatValue = static_cast<float>(doubleValue);
+		if (static_cast<float>(std::numeric_limits<char>::min()) <= floatValue
+			&& floatValue <= static_cast<float>(std::numeric_limits<char>::max()))
+		{
+			if ((0.0f <= floatValue && floatValue < 128.0f)
+				&& iscntrl(static_cast<int>(floatValue)) == false)
+			{
+				std::cout << '\'' << static_cast<char>(floatValue) << '\'' << std::endl;
+			}
+			else
+			{
+				std::cout << "Non displayable" << std::endl;
+			}
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
+	}
+	else if (isDouble())
+	{
+		double doubleValue = std::strtod(mLiteral.c_str(), NULL);;
+		if (static_cast<double>(std::numeric_limits<char>::min()) <= doubleValue
+			&& doubleValue <= static_cast<double>(std::numeric_limits<char>::max()))
+		{
+			if (0.0 <= doubleValue && doubleValue < 128.0
+				&& iscntrl(static_cast<int>(doubleValue)) == false)
+			{
+				std::cout << '\'' << static_cast<char>(doubleValue) << '\'' << std::endl;
+			}
+			else
+			{
+				std::cout << "Non displayable" << std::endl;
+			}
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
 	}
 	else
-	{
-		std::cout << '\'' << mChar << '\'' << std::endl;
-	}
-}
-
-void	ScalarConverter::printIntType(void)
-{
-	std::cout << "int: ";
-	if (mActualType == NONE
-		|| mFloatError == true
-		|| mDoubleError == true
-		|| mIntOverflow == true)
 	{
 		std::cout << "impossible" << std::endl;
 	}
+}
+
+void	ScalarConverter::printInt(void)
+{
+	std::cout << "int: ";
+	if (isChar())
+	{
+		std::cout << static_cast<int>(mLiteral[1]) << std::endl;
+	}
+	else if (isInt())
+	{
+		std::cout << static_cast<int>(std::strtol(mLiteral.c_str(), NULL, 10)) << std::endl;
+	}
+	else if (isFloat())
+	{
+		float floatValue = static_cast<float>(std::strtod(mLiteral.c_str(), NULL));
+		if (static_cast<float>(std::numeric_limits<int>::min()) <= floatValue
+			&& floatValue <= static_cast<float>(std::numeric_limits<int>::max()))
+		{
+			std::cout << static_cast<int>(floatValue) << std::endl;
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
+	}
+	else if (isDouble())
+	{
+		double doubleValue = std::strtod(mLiteral.c_str(), NULL);
+		if (static_cast<double>(std::numeric_limits<int>::min()) <= doubleValue
+			&& doubleValue <= static_cast<double>(std::numeric_limits<int>::max()))
+		{
+			std::cout << static_cast<int>(doubleValue) << std::endl;
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
+	}
 	else
 	{
-		std::cout << mInt << std::endl;
+		std::cout << "impossible" << std::endl;
 	}
 }
+
+
+void	ScalarConverter::printFloat(void)
+{
+	std::cout << "float: ";
+	if (isChar())
+	{
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(mLiteral[1]) << "f" << std::endl;
+	}
+	else if (isInt())
+	{
+		std::cout << std::fixed << std::setprecision(1) << static_cast<float>(std::strtol(mLiteral.c_str(), NULL, 10)) << "f" << std::endl;
+	}
+	else if (isFloat())
+	{
+		std::cout << std::fixed << std::setprecision(std::numeric_limits<float>::digits10) << static_cast<float>(std::strtod(mLiteral.c_str(), NULL)) << "f" << std::endl;
+	}
+	else if (isDouble())
+	{
+		double doubleValue = std::strtod(mLiteral.c_str(), NULL);
+		if (-static_cast<double>(std::numeric_limits<float>::max()) <= doubleValue
+			&& doubleValue <= static_cast<double>(std::numeric_limits<float>::max()))
+		{
+			std::cout << std::fixed << std::setprecision(std::numeric_limits<float>::digits10) << static_cast<float>(doubleValue) << "f" << std::endl;
+		}
+		else
+		{
+			std::cout << "impossible" << std::endl;
+		}
+	}
+	else
+	{
+		std::cout << "impossible" << std::endl;
+	}
+}
+
+void	ScalarConverter::printDouble(void)
+{
+	std::cout << "double: ";
+	if (isChar())
+	{
+		std::cout << std::fixed << std::setprecision(1) << static_cast<double>(mLiteral[1]) << std::endl;
+	}
+	else if (isInt())
+	{
+		std::cout << std::fixed << std::setprecision(1) << static_cast<double>(std::strtol(mLiteral.c_str(), NULL, 10)) << std::endl;
+	}
+	else if (isFloat())
+	{
+		std::cout << std::fixed << std::setprecision(std::numeric_limits<double>::digits10) << static_cast<double>(std::strtod(mLiteral.c_str(), NULL)) << std::endl;
+	}
+	else if (isDouble())
+	{
+		std::cout << std::fixed << std::setprecision(std::numeric_limits<double>::digits10) << static_cast<double>(std::strtod(mLiteral.c_str(), NULL)) << std::endl;
+	}
+	else
+	{
+		std::cout << "impossible" << std::endl;
+	}
+}
+
 
 
 /* private */
-std::string		ScalarConverter::mLiteral;
-int				ScalarConverter::mActualType;
+std::string ScalarConverter::mLiteral;
 
-char			ScalarConverter::mChar;
-int				ScalarConverter::mInt;
-float			ScalarConverter::mFloat;
-double			ScalarConverter::mDouble;
-
-bool			ScalarConverter::mCharNotAscii;
-bool			ScalarConverter::mIntOverflow;
-bool			ScalarConverter::mFloatError;
-bool			ScalarConverter::mDoubleError;
-
-const std::string& ScalarConverter::getLiteral(void)
+bool 	ScalarConverter::isChar(void)
 {
-	return ScalarConverter::mLiteral;
-}
-
-
-
-static bool	isCharType(const std::string& literal)
-{
-	if
-	(
-		literal.length() == 3
-		&& literal[0] == '\''
-		&& literal[2] == '\''
-	)
+	if (mLiteral.length() == 3
+		&& mLiteral[0] == '\''
+		&& mLiteral[2] == '\'')
 	{
 		return true;
 	}
@@ -100,11 +231,15 @@ static bool	isCharType(const std::string& literal)
 	}
 }
 
-static bool isIntType(const std::string& literal)
+bool	ScalarConverter::isInt(void)
 {
 	char* endPtr = NULL;
-	std::strtol(literal.c_str(), &endPtr, 10);
-	if (endPtr[0] == '\0')
+	const char* cStr = mLiteral.c_str();
+	long longValue = std::strtol(cStr, &endPtr, 10);
+	if (mLiteral.length() != 0
+		&& *endPtr == '\0'
+		&& (static_cast<long>(std::numeric_limits<int>::min()) <= longValue 
+			&& longValue <= static_cast<long>(std::numeric_limits<int>::max())))
 	{
 		return true;
 	}
@@ -114,11 +249,36 @@ static bool isIntType(const std::string& literal)
 	}
 }
 
-static bool	isFloatType(const std::string& literal)
+bool	ScalarConverter::isFloat(void)
 {
+	if (mLiteral == std::string("nanf")
+		|| mLiteral == std::string("+inff")
+		|| mLiteral == std::string("-inff")
+		|| mLiteral == std::string("inff"))
+	{
+		return true;
+	}
 	char* endPtr = NULL;
-	std::strtod(literal.c_str(), &endPtr);
-	if (endPtr[0] == 'f' && endPtr[1] == '\0' && literal.length() > 1)
+	const char* cStr = mLiteral.c_str();
+	double doubleValue = std::strtod(cStr, &endPtr);
+	size_t dotCount = 0;
+	for (size_t i = 0; cStr[i]; ++i)
+	{
+		if (cStr[i] == '.')
+		{
+			++dotCount;
+		}
+	}
+	if (dotCount != 1)
+	{
+		return false;
+	}
+	if (mLiteral.length() >= 3
+		&& endPtr != NULL
+		&& endPtr[0] == 'f'
+		&& endPtr[1] == '\0'
+		&& (-static_cast<double>(std::numeric_limits<float>::max()) <= doubleValue
+			&& doubleValue <= static_cast<double>(std::numeric_limits<float>::max())))
 	{
 		return true;
 	}
@@ -128,183 +288,28 @@ static bool	isFloatType(const std::string& literal)
 	}
 }
 
-static bool	isDoubleType(const std::string& literal)
+bool	ScalarConverter::isDouble(void)
 {
+	if (mLiteral == std::string("nan")
+		|| mLiteral == std::string("+inf")
+		|| mLiteral == std::string("-inf")
+		|| mLiteral == std::string("inf"))
+	{
+		return true;
+	}
 	char* endPtr = NULL;
-	std::strtod(literal.c_str(), &endPtr);
-	if (endPtr[0] == '\0' && literal.length() != 0)
+	const char* cStr = mLiteral.c_str();
+	double doubleValue = std::strtod(cStr, &endPtr);
+	if (mLiteral.length() >= 2
+		&& endPtr != NULL
+		&& *endPtr == '\0'
+		&& (-std::numeric_limits<double>::max() <= doubleValue
+			&& doubleValue <= std::numeric_limits<double>::max()))
 	{
 		return true;
 	}
 	else
 	{
 		return false;
-	}
-}
-
-
-void	ScalarConverter::setActualType(void)
-{
-	if (isCharType(getLiteral()))
-	{
-		mActualType = CHAR;
-	}
-	else if (isIntType(getLiteral()))
-	{
-		mActualType = INT;
-	}
-	else if (isFloatType(getLiteral()))
-	{
-		mActualType = FLOAT;
-	}
-	else if (isDoubleType(getLiteral()))
-	{
-		mActualType = DOUBLE;
-	}
-	else
-	{
-		mActualType = NONE;
-	}
-
-	switch (mActualType)
-	{
-		long longValue;
-		case CHAR:
-			if (iscntrl(mLiteral[1]) == false && mLiteral[1] > 0)
-			{
-				mChar = mLiteral[1];
-				mCharNotAscii = false;
-			}
-			else
-			{
-				mChar = 0;
-				mCharNotAscii = true;
-			}
-			break;
-		case INT:
-			longValue = strtol(mLiteral.c_str(), NULL, 10);
-			if (std::numeric_limits<int>::min() <= longValue && longValue <= std::numeric_limits<int>::max())
-			{
-				mIntOverflow = false;
-				mInt = static_cast<int>(longValue);
-			}
-			else
-			{
-				mIntOverflow = true;
-				mInt = 0;
-			}
-			break;
-		case FLOAT:
-			if (mLiteral == std::string("nanf")
-				|| mLiteral == std::string("+inff")
-				|| mLiteral == std::string("-inff")
-				|| mLiteral == std::string("inff"))
-			{
-				mFloatError = true;
-				mFloat = 0;
-			}
-			else
-			{
-				mFloatError = false;
-				mFloat = static_cast<float>(strtod(mLiteral.c_str(), NULL));
-			}
-			break;
-		case DOUBLE:
-			if (mLiteral == std::string("nan")
-				|| mLiteral == std::string("+inf")
-				|| mLiteral == std::string("-inf")
-				|| mLiteral == std::string("inf"))
-			{
-				mDoubleError = true;
-				mDouble = 0;
-			}
-			else
-			{
-				mDoubleError = false;
-				mDouble = strtod(mLiteral.c_str(), NULL);
-			}
-			break;
-		default:
-			break;
-	}
-}
-
-
-
-
-void	ScalarConverter::setOthersType(void)
-{
-	switch (mActualType)
-	{
-		long longValue;
-		case CHAR:
-			mInt = static_cast<int>(mChar);
-			mFloat = static_cast<float>(mChar);
-			mDouble = static_cast<double>(mChar);
-			break;
-		case INT:
-			if (isascii(mInt) == true)
-			{
-				mChar = static_cast<char>(mInt);
-				mCharNotAscii = false;
-			}
-			else
-			{
-				mChar = 0;
-				mCharNotAscii = true;
-			}
-			mFloat = static_cast<float>(mInt);
-			mDouble = static_cast<double>(mInt);
-			break;
-		case FLOAT:
-			if (isascii(static_cast<int>(mFloat) == true))
-			{
-				mChar = static_cast<char>(mFloat);
-				mCharNotAscii = false;
-			}
-			else
-			{
-				mChar = 0;
-				mCharNotAscii = true;
-			}
-			longValue = static_cast<long>(mFloat);
-			if ((std::numeric_limits<int>::min() <= longValue && longValue <= std::numeric_limits<int>::max())
-				== false)
-			{
-				mIntOverflow = true;
-			}
-			else
-			{
-				mIntOverflow = false;
-			}
-			mInt = static_cast<int>(mFloat);
-			mDouble = static_cast<double>(mFloat);
-			break;
-		case DOUBLE:
-			if (isascii(static_cast<int>(mDouble) == true))
-			{
-				mChar = static_cast<char>(mDouble);
-				mCharNotAscii = false;
-			}
-			else
-			{
-				mChar = 0;
-				mCharNotAscii = true;
-			}
-			longValue = static_cast<long>(mDouble);
-			if ((std::numeric_limits<int>::min() <= longValue && longValue <= std::numeric_limits<int>::max())
-				== false)
-			{
-				mIntOverflow = true;
-			}
-			else
-			{
-				mIntOverflow = false;
-			}
-			mInt = static_cast<int>(mDouble);
-			mFloat = static_cast<float>(mDouble);
-			break;
-		default:
-			break;
 	}
 }

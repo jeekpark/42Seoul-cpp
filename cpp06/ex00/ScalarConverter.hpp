@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/29 15:05:03 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/04 17:11:07 by jeekpark         ###   ########.fr       */
+/*   Created: 2023/11/05 00:58:54 by jeekpark          #+#    #+#             */
+/*   Updated: 2023/11/05 20:59:04 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,21 @@
 #define SCALARCONVERTER_HPP
 
 #include <string>
-#include <iostream>
-
 
 class ScalarConverter
 {
 public:
-	static void					convert(const std::string& literal);
-	static void					printCharType(void);
-	static void					printIntType(void);
-
+	static void			convert(const std::string& literal);
+	static void			printChar(void);
+	static void			printInt(void);
+	static void			printFloat(void);
+	static void			printDouble(void);
 private:
-	enum eActualType
-	{
-		CHAR,
-		INT,
-		FLOAT,
-		DOUBLE,
-		NONE
-	};
-	
-	static std::string			mLiteral;
-	
-	static int					mActualType; 
-	static char					mChar;
-	static int					mInt;
-	static float				mFloat;
-	static double				mDouble;
-	
-	static bool					mCharNotAscii;
-	static bool					mIntOverflow;
-	static bool					mFloatError;
-	static bool					mDoubleError;
-	static const std::string&	getLiteral(void);
-	static void					setActualType(void);
-	static void					setOthersType(void);
+	static std::string	mLiteral;
+	static bool			isChar(void);
+	static bool			isInt(void);
+	static bool			isFloat(void);
+	static bool			isDouble(void);
 };
 
 #endif
