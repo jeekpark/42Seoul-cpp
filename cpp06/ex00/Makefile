@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 00:11:52 by jeekpark          #+#    #+#              #
-#    Updated: 2023/11/05 20:59:32 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/11/05 21:01:01 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ OBJS		=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
 
 all : $(NAME)
 
