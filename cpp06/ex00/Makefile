@@ -6,18 +6,18 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 00:11:52 by jeekpark          #+#    #+#              #
-#    Updated: 2023/11/05 21:01:01 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/11/06 14:17:00 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	convert
+NAME		:=	convert
 
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 
-SRCS		=	main.cpp			\
+SRCS		:=	main.cpp			\
 				ScalarConverter.cpp
 
-OBJS		=	$(SRCS:.cpp=.o)
+OBJS		:=	$(SRCS:.cpp=.o)
 
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@

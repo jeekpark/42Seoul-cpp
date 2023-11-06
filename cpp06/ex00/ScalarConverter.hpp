@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 00:58:54 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/05 20:59:04 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:16:57 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ private:
 	static bool			isInt(void);
 	static bool			isFloat(void);
 	static bool			isDouble(void);
+
+						ScalarConverter(void);
+						ScalarConverter(const ScalarConverter& copy);
+						~ScalarConverter(void);
+	ScalarConverter&	operator=(const ScalarConverter& copy);
 };
 
 #endif

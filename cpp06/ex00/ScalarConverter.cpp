@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 01:03:34 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/05 21:08:56 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:16:54 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,4 +316,26 @@ bool	ScalarConverter::isDouble(void)
 	{
 		return false;
 	}
+}
+
+
+ScalarConverter::ScalarConverter(void)
+{
+	// Empty body function
+}
+
+ScalarConverter::~ScalarConverter(void)
+{
+	// Empty body function
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& copy)
+{
+	(void)copy;
+}
+
+ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& copy)
+{
+	(void)copy;
+	return *this;
 }
