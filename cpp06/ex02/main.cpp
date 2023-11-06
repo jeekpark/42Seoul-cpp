@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 23:57:43 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/06 15:41:06 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:59:58 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	identify(Base& p)
 	{}
 }
 
-int main(int argc, char **argv)
+int main()
 {
 	std::srand(static_cast<unsigned int>(time(NULL)));
 	for (size_t i = 0; i < 20; ++i)
