@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:17:06 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/06 16:34:18 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:56:31 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int main(void)
 {
-	const int a = 2;
-	const int b = 3;
+	int a = 2;
+	int b = 3;
 
 	::swap(a, b);
 	std::cout << "a = " << a << ", b = " << b << std::endl;
