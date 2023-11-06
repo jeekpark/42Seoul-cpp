@@ -1,7 +1,7 @@
 #include <iostream>
-#include <Array.hpp>
+#include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 20
 int main(int, char**)
 {
     Array<int> numbers(MAX_VAL);
@@ -16,9 +16,16 @@ int main(int, char**)
     //SCOPE
     {
         Array<int> tmp = numbers;
+		for (unsigned int i = 0; i < MAX_VAL; ++i)
+		{
+			std::cout << "tmp, numbers:\t\t" << tmp[i] << ",\t" << numbers[i] << std::endl;
+		}
         Array<int> test(tmp);
+		for (unsigned int i = 0; i < MAX_VAL; ++i)
+		{
+			std::cout << "tmp, test:\t\t" << tmp[i] << ",\t" << test[i] << std::endl;
+		}
     }
-
     for (int i = 0; i < MAX_VAL; i++)
     {
         if (mirror[i] != numbers[i])
