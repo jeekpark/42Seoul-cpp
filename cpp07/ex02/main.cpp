@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cstdlib>
 #include "Array.hpp"
+
 
 #define MAX_VAL 20
 int main(int, char**)
