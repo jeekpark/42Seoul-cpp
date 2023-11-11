@@ -6,48 +6,110 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:17:06 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/10 02:10:42 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:45:28 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./Span.hpp"
-#include <climits>
-#include <cstdlib>
-#include <ctime>
+#include "./MutantStack.hpp"
 #include <iostream>
+#include <iterator>
+#include <stack>
 #include <vector>
+#include <list>
+#include <map>
 
 int main(void)
 {
 	{
-		Span sp = Span(5);
-		sp.addNumber(6);
-		sp.addNumber(3);
-		sp.addNumber(17);
-		sp.addNumber(9);
-		sp.addNumber(11);
-		std::cout << sp.shortestSpan() << std::endl;
-		std::cout << sp.longestSpan() << std::endl;
+		MutantStack<int>	mstack;
+		mstack.push(5);
+		mstack.push(17);
+		std::cout << mstack.top() << std::endl;
+		mstack.pop();
+		std::cout << mstack.size() << std::endl;
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
+		mstack.push(0);
+		MutantStack<int>::iterator it = mstack.begin();
+		MutantStack<int>::iterator ite = mstack.end();
+		++it;
+		--it;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+		std::stack<int> s(mstack);
+	}
+
+	{
+		MutantStack<int, std::vector<int> >	mstack;
+		mstack.push(5);
+		mstack.push(17);
+		std::cout << mstack.top() << std::endl;
+		mstack.pop();
+		std::cout << mstack.size() << std::endl;
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
+		mstack.push(0);
+		MutantStack<int, std::vector<int> >::iterator it = mstack.begin();
+		MutantStack<int, std::vector<int> >::iterator ite = mstack.end();
+		++it;
+		--it;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+		std::stack<int, std::vector<int> > s(mstack);
+	}
+
+	{
+		MutantStack<int, std::deque<int> >	mstack;
+		mstack.push(5);
+		mstack.push(17);
+		std::cout << mstack.top() << std::endl;
+		mstack.pop();
+		std::cout << mstack.size() << std::endl;
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
+		mstack.push(0);
+		MutantStack<int, std::deque<int> >::iterator it = mstack.begin();
+		MutantStack<int, std::deque<int> >::iterator ite = mstack.end();
+		++it;
+		--it;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+		std::stack<int, std::deque<int> > s(mstack);
 	}
 	
 	{
-		Span span(3);
-		span.addNumber(INT_MIN);
-		span.addNumber(INT_MAX);
-		span.addNumber(INT_MAX / 10);
-		std::cout << span.shortestSpan() << std::endl;
-		std::cout << span.longestSpan() << std::endl;
-	}
-	
-	{
-		std::srand(static_cast<unsigned int>(time(NULL)));
-		std::vector<int> v;
-		for (std::size_t i = 0; i < 10000; ++i)
-			v.push_back(std::rand());
-		Span span(10000);
-		span.addNumber(v.begin(), v.end());
-		std::cout << span.shortestSpan() << std::endl;
-		std::cout << span.longestSpan() << std::endl;
+		MutantStack<int, std::list<int> >	mstack;
+		mstack.push(5);
+		mstack.push(17);
+		std::cout << mstack.top() << std::endl;
+		mstack.pop();
+		std::cout << mstack.size() << std::endl;
+		mstack.push(3);
+		mstack.push(5);
+		mstack.push(737);
+		mstack.push(0);
+		MutantStack<int, std::list<int> >::iterator it = mstack.begin();
+		MutantStack<int, std::list<int> >::iterator ite = mstack.end();
+		++it;
+		--it;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+		std::stack<int, std::list<int> > s(mstack);
 	}
 	return 0;
 }

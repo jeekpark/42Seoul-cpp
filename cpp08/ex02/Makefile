@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 00:11:52 by jeekpark          #+#    #+#              #
-#    Updated: 2023/11/09 23:28:44 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/11/11 15:15:54 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		:=	run
 
 CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 
-SRCS		:=	main.cpp Span.cpp
+SRCS		:=	main.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 
