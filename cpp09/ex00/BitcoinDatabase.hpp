@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinDatabase.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:22:42 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/14 02:12:31 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:35:35 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

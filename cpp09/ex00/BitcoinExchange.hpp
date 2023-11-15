@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 20:44:27 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/14 02:46:50 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:02:17 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
+
+#include <vector>
 
 #include "./BitcoinDatabase.hpp"
 
@@ -23,14 +25,15 @@ public:
 									~BitcoinExchange(void);
 	BitcoinExchange&				operator=(const BitcoinExchange& copy);
 
-	void							importFile(const std::string& filePath);
-	void							importDatabase(const std::string& databaseFilePath);
-	void							importDatabase(const BitcoinDatabase& database);
-	const std::vector<std::string>&	getResult(void) const;
+	void							importDatabase(const std::string& databaseFilePath) throw(std::exception);
+	void							exchange(const std::string& inputFilePath) throw(std::exception);
+	const std::vector<std::string>& getExchangeResult(void) const;
+
+	class InvalidInputException	: public std::exception
+	{ public: virtual const char* what(void) const throw(); };
 private:
 	BitcoinDatabase					mDatabase;
-	std::vector<std::string>		mResult;
-
+	std::vector<std::string>		mExchangeResult;
 };
 
 #endif
