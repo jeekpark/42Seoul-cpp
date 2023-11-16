@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:05:43 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/14 02:08:42 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/16 17:52:47 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ BitcoinDatabase& BitcoinDatabase::operator=(const BitcoinDatabase& copy)
 	return *this;
 }
 
-float BitcoinDatabase::getExchangeRateByDate(const std::string& date) throw(std::exception)
+float BitcoinDatabase::getExchangeRateByDate(const std::string& date)
 {
-	return getDatabase().at(date);
+	BitcoinDatabase::MapT::const_iterator it = getDatabase().find(date);
+	if (it != getDatabase().end()) return it->second;
+	it = getDatabase().lower_bound(date);
+	if (it != getDatabase().begin()) return (--it)->second;
+	throw BitcoinDatabase::NoPreviousDateFoundException();
 }
 
-void BitcoinDatabase::importDatabase(const std::string& databaseFilePath) throw(std::exception)
+void BitcoinDatabase::importDatabase(const std::string& databaseFilePath)
 {
 	mDatabase.clear();
 	std::ifstream inputFile(databaseFilePath);
@@ -79,9 +83,19 @@ void BitcoinDatabase::importDatabase(const std::string& databaseFilePath) throw(
 		throw BitcoinDatabase::InvaildDatabaseException();
 }
 
+size_t BitcoinDatabase::getDatabaseSize(void) const
+{
+	return getDatabase().size();
+}
+
 const char* BitcoinDatabase::InvaildDatabaseException::what(void) const throw()
 {
-	return "Invalid Database\n";
+	return "Invalid database";
+}
+
+const char* BitcoinDatabase::NoPreviousDateFoundException::what(void) const throw()
+{
+	return "No previous date found";
 }
 /* public tail */
 

@@ -6,7 +6,7 @@
 #    By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 00:11:52 by jeekpark          #+#    #+#              #
-#    Updated: 2023/11/13 23:20:42 by jeekpark         ###   ########.fr        #
+#    Updated: 2023/11/16 16:42:20 by jeekpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CXXFLAGS	:=	-Wall -Wextra -Werror -std=c++98
 SRCS		:=	main.cpp						\
 				BitcoinDatabase.cpp				\
 				isDateFormat.cpp				\
-				split.cpp
+				split.cpp						\
+				BitcoinExchange.cpp
 
 OBJS		:=	$(SRCS:.cpp=.o)
 

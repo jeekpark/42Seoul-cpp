@@ -6,15 +6,17 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:17:06 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/14 02:13:10 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:42:48 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstdlib>
 #include <exception>
 #include <iostream>
+#include <string>
+#include <vector>
 
-#include "./BitcoinDatabase.hpp"
+#include "./BitcoinExchange.hpp"
 
 int main(const int argc, const char** argv)
 {
@@ -23,23 +25,18 @@ int main(const int argc, const char** argv)
 		std::cout << "Error: could not open file." << std::endl;
 		return EXIT_FAILURE;
 	}
-	(void)argv;
-	BitcoinDatabase db;
+	BitcoinExchange exchanger;
 	try
 	{
-		db.importDatabase("./data.csv");
-		std::cout << db.getExchangeRateByDate("2022-013-16");
-	}
-	catch (const std::exception& e)
+		exchanger.importDatabase(std::string("./data.csv"));
+		exchanger.exchange(std::string(argv[1]));
+		for (std::vector<std::string>::const_iterator it = exchanger.getExchangeResult().begin();
+			it != exchanger.getExchangeResult().end(); ++it)
+			std::cout << *it << '\n';
+	} catch (const std::exception& e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << "Error: " << e.what() << std::endl;
 		return EXIT_FAILURE;
 	}
-
-
-	
-
-
-
-	return 0;
+	return EXIT_SUCCESS;
 }
