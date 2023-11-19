@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:06:59 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/13 20:14:21 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/19 13:32:10 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 std::vector<std::string> split(const std::string& str, char c)
 {
-	std::vector<std::string> tokens;
-	std::string token;
-	std::istringstream tokenStream(str);
+  std::vector<std::string> tokens;
+  std::string token;
+  std::istringstream tokenStream(str);
 
-	while (std::getline(tokenStream, token, c))
-	{
-		tokens.push_back(token);
-	}
-	return tokens;
+  while (std::getline(tokenStream, token, c))
+  {
+    tokens.push_back(token);
+  }
+  return tokens;
 }

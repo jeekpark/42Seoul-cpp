@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:40:11 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/16 16:29:38 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/19 13:29:34 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include <string>
 
-bool 	isLeapYear(long year);
-bool	isDateFormat(const std::string& str);
+bool  isLeapYear(long year);
+bool  isDateFormat(const std::string& str);
 
 #endif

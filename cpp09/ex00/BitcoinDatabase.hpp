@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:22:42 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/16 17:52:45 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/19 13:25:33 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,29 @@
 class BitcoinDatabase
 {
 public:
-	
-									BitcoinDatabase(void);
-									BitcoinDatabase(const BitcoinDatabase& copy);
-									~BitcoinDatabase(void);
-	BitcoinDatabase&				operator=(const BitcoinDatabase& copy);
+  
+                                BitcoinDatabase(void);
+                                BitcoinDatabase(const BitcoinDatabase& copy);
+                                ~BitcoinDatabase(void);
+  BitcoinDatabase&              operator=(const BitcoinDatabase& copy);
 
-	float							getExchangeRateByDate(const std::string& date);
-	void							importDatabase(const std::string& databaseFilePath);
-	size_t							getDatabaseSize(void) const;
-	
-	class InvaildDatabaseException : public std::exception
-	{ public: virtual const char* what(void) const throw(); };
-	class NoPreviousDateFoundException : public std::exception
-	{ public: virtual const char* what(void) const throw(); };
+  float                         getExchangeRateByDate(const std::string& date);
+  void                          importDatabase(const std::string& databaseFilePath);
+  size_t                        getDatabaseSize(void) const;
+  
+  class InvaildDatabaseException : public std::exception
+  { public: virtual const char* what(void) const throw(); };
+  class NoPreviousDateFoundException : public std::exception
+  { public: virtual const char* what(void) const throw(); };
 private:
-	typedef std::map<std::string, float, std::less<std::string>,
-		std::allocator<std::pair<const std::string, float> > >
-									MapT;
+  typedef std::map<std::string, float, std::less<std::string>,
+    std::allocator<std::pair<const std::string, float> > >
+                                MapT;
 
-	BitcoinDatabase::MapT			mDatabase;
+  BitcoinDatabase::MapT         mDatabase;
 
-	const BitcoinDatabase::MapT&	getDatabase(void) const;
-	void							setDatabase(const BitcoinDatabase::MapT& database);
+  const BitcoinDatabase::MapT&  getDatabase(void) const;
+  void                          setDatabase(const BitcoinDatabase::MapT& database);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:07:19 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/13 20:14:25 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/11/19 13:32:08 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 #include <vector>
 
-std::vector<std::string> split(const std::string& str, char c);
+std::vector<std::string>  split(const std::string& str, char c);
 
 #endif
