@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 08:10:14 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/12/30 09:46:30 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/12/30 10:34:11 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,75 @@ bool PmergeMe::sort()
 	return true;
 }
 
+bool compare(int a, int b)
+{
+	return a < b;
+}
+
 time_t PmergeMe::sortDeque()
 {
 	clock_t start, end;
 	start = clock();
 
+	for (int i = 1; i < mArgc; ++i)
+	{
+		mDeque.push_back(std::atoi(mArgv[i]));
+	}
+
+	sort(mDeque, compare);
+
 	end = clock();
 	return end - start;
+}
+
+void		PmergeMe::sort(std::deque<int>& xs, Compare cmp)
+{
+	if (xs.size() < 2)
+		return ;
+
+	std::map<int, std::deque<int> > partner;
+	int half = xs.size() / 2;
+	for (int i = 0; i < half; ++i)
+	{
+		if (i + half < static_cast<int>(xs.size()) && cmp(xs[i], xs[i + half]))
+		{
+			std::swap(xs[i], xs[i + half]);
+		}
+		if (i + half < static_cast<int>(xs.size()))
+			partner[xs[i]].push_back(xs[i + half]);
+	}
+
+	std::deque<int> firstHalf(xs.begin(), xs.begin() + half);
+	sort(firstHalf, cmp);
+	std::copy(firstHalf.begin(), firstHalf.end(), xs.begin());
+
+	for (int i = 0; i < half; ++i)
+	{
+		if (partner.find(xs[2 * i]) != partner.end() && !partner[xs[2 * i]].empty())
+		{
+			int y = partner[xs[2 * i]].back();
+			partner[xs[2 * i]].pop_back();
+			int idx = 0;
+			while (idx < 2 * i && idx < static_cast<int>(xs.size()) && !cmp(y, xs[idx]))
+				++idx;
+			if (idx <= static_cast<int>(xs.size()))
+				xs.insert(xs.begin() + idx, y);
+		}
+	}
+	if (xs.size() % 2 > 0)
+	{
+		int i = xs.size() - 1;
+		int idx = 0;
+		while (idx < i && !cmp(xs[i], xs[idx]))
+			++idx;
+		if (!xs.empty()) {
+				int y = xs.back();
+				xs.pop_back();
+				if (idx <= static_cast<int>(xs.size())) {
+						xs.insert(xs.begin() + idx, y);
+				}
+		}
+	}
 }
 
 time_t PmergeMe::sortList()
