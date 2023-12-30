@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 08:10:14 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/12/30 09:44:33 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/12/30 09:46:30 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool PmergeMe::sort()
 						<< static_cast<unsigned long>(dequeTimeTaken)
 						<< " ms"
 						<< std::endl;
-	std::cout << "\nTime to process a range of "
+	std::cout << "Time to process a range of "
 						<< mArgc - 1
 						<< " elements with std::list : "
 						<< static_cast<unsigned long>(listTimeTaken)
