@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 08:10:14 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/12/30 09:39:58 by jeekpark         ###   ########.fr       */
+/*   Updated: 2023/12/30 09:44:33 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ bool PmergeMe::sort()
 		}
 	}
 
-	float dequeTimeTaken = sortDeque();
-	float listTimeTaken = sortList();
+	time_t dequeTimeTaken = sortDeque();
+	time_t listTimeTaken = sortList();
 
 	std::cout << "Before:\t";
 	printArgv();
@@ -66,14 +66,14 @@ bool PmergeMe::sort()
 	std::cout << "\nTime to process a range of "
 						<< mArgc - 1
 						<< " elements with std::deque : "
-						<< dequeTimeTaken
-						<< " us"
+						<< static_cast<unsigned long>(dequeTimeTaken)
+						<< " ms"
 						<< std::endl;
 	std::cout << "\nTime to process a range of "
 						<< mArgc - 1
 						<< " elements with std::list : "
-						<< listTimeTaken
-						<< " us"
+						<< static_cast<unsigned long>(listTimeTaken)
+						<< " ms"
 						<< std::endl;
 	return true;
 }
