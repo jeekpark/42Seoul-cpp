@@ -11,10 +11,7 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-#include <cstdlib>
-#include <ctime>
-#include <deque>
-#include <sys/_types/_time_t.h>
+
 
 PmergeMe::PmergeMe(const int argc, const char** argv)
 : mArgc(argc)
@@ -25,7 +22,7 @@ PmergeMe::PmergeMe(const PmergeMe& copy)
 : mArgc(copy.mArgc)
 , mArgv(copy.mArgv)
 , mDeque(copy.mDeque)
-, mList(copy.mList)
+, mVector(copy.mVector)
 {}
 
 PmergeMe::~PmergeMe()
@@ -57,7 +54,7 @@ bool PmergeMe::sort()
 	}
 
 	time_t dequeTimeTaken = sortDeque();
-	time_t listTimeTaken = sortList();
+	time_t listTimeTaken = sortVector();
 
 	std::cout << "Before:\t";
 	printArgv();
@@ -78,10 +75,7 @@ bool PmergeMe::sort()
 	return true;
 }
 
-bool compare(int a, int b)
-{
-	return a < b;
-}
+
 
 time_t PmergeMe::sortDeque()
 {
@@ -93,60 +87,57 @@ time_t PmergeMe::sortDeque()
 		mDeque.push_back(std::atoi(mArgv[i]));
 	}
 
-	sort(mDeque, compare);
-
+	sortDequeFJ(mDeque);
 	end = clock();
 	return end - start;
 }
-
-void		PmergeMe::sort(std::deque<int>& xs, Compare cmp)
+size_t PmergeMe::findInsertPoint(int x, const std::deque<int>& dq)
 {
-	if (xs.size() < 2)
+    size_t lo = 0;
+    size_t hi = dq.size();
+    while (hi > lo)
+    {
+      size_t mid = lo + (hi - lo) / 2;
+      if (x < dq[mid])
+        hi = mid;
+      else if (dq[mid] < x)
+        lo = mid + 1;
+      else
+        return mid;
+    }
+    return lo;
+}
+void PmergeMe::sortDequeFJ(std::deque<int>& dq)
+{
+	if (dq.size() < 2)
 		return ;
-
 	std::map<int, std::deque<int> > partner;
-	int half = xs.size() / 2;
-	for (int i = 0; i < half; ++i)
+	size_t half = dq.size() / 2;
+	for (size_t i = 0; i < half; ++i)
 	{
-		if (i + half < static_cast<int>(xs.size()) && cmp(xs[i], xs[i + half]))
-		{
-			std::swap(xs[i], xs[i + half]);
-		}
-		if (i + half < static_cast<int>(xs.size()))
-			partner[xs[i]].push_back(xs[i + half]);
+		if (dq[i] < dq[i + half])
+			std::swap(dq[i], dq[i + half]);
+		partner[dq[i]].push_back(dq[i + half]);
 	}
 
-	std::deque<int> firstHalf(xs.begin(), xs.begin() + half);
-	sort(firstHalf, cmp);
-	std::copy(firstHalf.begin(), firstHalf.end(), xs.begin());
+	std::deque<int> firstHalf(dq.begin(), dq.begin() + half);
+	sortDequeFJ(firstHalf);
+	std::copy(firstHalf.begin(), firstHalf.end(), dq.begin());
 
-	for (int i = 0; i < half; ++i)
-	{
-		if (partner.find(xs[2 * i]) != partner.end() && !partner[xs[2 * i]].empty())
-		{
-			int y = partner[xs[2 * i]].back();
-			partner[xs[2 * i]].pop_back();
-			int idx = 0;
-			while (idx < 2 * i && idx < static_cast<int>(xs.size()) && !cmp(y, xs[idx]))
-				++idx;
-			if (idx <= static_cast<int>(xs.size()))
-				xs.insert(xs.begin() + idx, y);
-		}
-	}
-	if (xs.size() % 2 > 0)
-	{
-		int i = xs.size() - 1;
-		int idx = 0;
-		while (idx < i && !cmp(xs[i], xs[idx]))
-			++idx;
-		if (!xs.empty()) {
-				int y = xs.back();
-				xs.pop_back();
-				if (idx <= static_cast<int>(xs.size())) {
-						xs.insert(xs.begin() + idx, y);
-				}
-		}
-	}
+	for (size_t i = 0; i < half; ++i)
+  {
+    int y = partner[dq[2 * i]].back();
+    partner[dq[2 * i]].pop_back();
+    size_t idx = findInsertPoint(y, std::deque<int>(dq.begin(), dq.begin() + 2 * i));
+    std::rotate(dq.begin() + idx, dq.begin() + half + i, dq.begin() + half + i + 1);
+    dq[idx] = y;
+  }
+  if (dq.size() % 2 > 0)
+  {
+    size_t i = dq.size() - 1;
+    size_t idx = findInsertPoint(dq[i], std::deque<int>(dq.begin(), dq.begin() + i));
+    std::rotate(dq.begin() + idx, dq.begin() + i, dq.end());
+  }
 }
 
 time_t PmergeMe::sortList()
@@ -154,11 +145,14 @@ time_t PmergeMe::sortList()
 	clock_t start, end;
 	start = clock();
 
+	for (int i = 1; i < mArgc; ++i)
+	{
+		mList.push_back(std::atoi(mArgv[i]));
+	}
+
 	end = clock();
 	return end - start;
 }
-
-
 
 
 void PmergeMe::printArgv() const
