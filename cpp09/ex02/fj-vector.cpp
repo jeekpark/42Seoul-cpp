@@ -1,54 +1,81 @@
+#include <cstdlib>
+#include <cmath>
+#include <iostream>
+
 #include <vector>
+#include <algorithm>
 
+void binaryInsertion(std::vector<int>& d, int start, int end, int x) {
+    int left = start;
+    int right = end - 1;
+    int mid;
 
-size_t find_insert_point(size_t x, const std::vector<int>& arr)
-{
-  size_t lo = 0;
-  size_t hi = arr.size();
-  while (hi > lo)
-  {
-    size_t mid  = lo + (hi - lo) / 2;
-    if (x < arr[mid])
-      hi = mid;
-    else if (arr[mid] < x)
-      lo = mid + 1;
-    else
-      return mid;
-  }
-  return lo;
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        if (d[mid] < x) left = mid + 1;
+        else right = mid - 1;
+    }
+
+    d.insert(d.begin() + left, x);
 }
 
-#include <map>
-void sort(std::vector<int>& arr)
+void printVector(std::vector<int>& v)
 {
-  if (arr.size() < 2)
-    return ;
-
-  bool odd = false;
-  int num;
-  if (arr.size() & 1)
+  std::cout << "\n----start----\n";
+  for (std::vector<int>::iterator it = v.begin(); it != v.end(); ++it)
   {
-    odd = true;
-    num = arr.back();
-    arr.pop_back();
+    std::cout << *it << "\n";
   }
+  std::cout << "-----end-----" << std::endl;
+}
 
-  std::vector<std::pair<int, int> > pairs;
-  pairs.reserve(arr.size() / 2);
-  for (size_t i = 0; i < arr.size(); i += 2)
+void mergeInsertion(std::vector<int>& d) {
+    int n = d.size();
+    if (n < 2) return;
+
+    std::vector<int> a;
+    std::vector<int> b;
+    for (int i = 0; i < n / 2; ++i)
+    {
+      a.push_back(std::max(d[i], d[i + std::ceil((float)n / 2)]));
+      b.push_back(std::min(d[i], d[i + std::ceil((float)n / 2)]));
+    }
+    if (n & 1)
+      b.push_back(d[n / 2]);
+
+    // ^ line: 9
+
+    mergeInsertion(a);
+    
+    printVector(a);
+    printVector(b);
+
+}
+
+
+int main()
+{
+  std::vector<int> d;
+
+  /* for (int i = 20; i > 0; --i)
   {
-    if (pairs[i].first < pair)
-  }
+    d.push_back(random() % 20);
+  } */
+  d.push_back(4); // 4 2 5 1 3 7
+  d.push_back(2);
+  d.push_back(5);
+  d.push_back(1);
+  d.push_back(3);
+  //d.push_back(7);
 
 
-  std::map<int, std::vector<int> > partner;
-  size_t half = arr.size() / 2;
-  for (size_t i = 0; i < half; ++i)
-  {
-    if (arr[i] < arr[i + half])
-      std::swap(arr[i], arr[i + half]);
-    partner[arr[i]].push_back((arr[i + half]));
-  }
+  std::cout << "fin " << std::endl;
 
-  std::vector<int> first_half
+
+  mergeInsertion(d);
+
+  /* for (size_t i = 0; i < d.size(); ++i) {
+      std::cout << d[i] << " ";
+  } */
+  std::cout << std::endl;
 }
