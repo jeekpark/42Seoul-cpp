@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 01:44:14 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/12/30 10:17:38 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/02/10 19:28:39 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 #include <deque>
 #include <list>
 #include <cstdlib>
-#include <unordered_map>
 #include <iostream>
 #include <ctime>
-#include <map>
+
 
 class PmergeMe
 {
@@ -37,31 +36,29 @@ public: // basic function
 
 
 
+
+
 private: // basic(priv) function
 
-	time_t	sortDeque(); // returns time taken
-	void		sortDequeFJ(std::deque<int>& dq);
-	size_t	findInsertPoint(int x, const std::deque<int>& dq);
-
-	time_t	sortVector(); // returns time taken
-	void		sortVectorFJ(std::list<int>& lst);
+	time_t sortByList(); // returns time taken
+	time_t sortByDeque(); // returns time taken
+	void sort(std::list<size_t>& arr);
 
 	
 	
 	
 private: // utils
-	void	printArgv() const;
-	void	printDeque() const;
-	bool	isInt(const std::string& literal) const;
-
+	void printArgv() const;
+	void printDeque() const;
+	bool isInt(const std::string& literal) const;
 
 private: // const vars
-	const int				mArgc;
-	const char**		mArgv;
+	const int mArgc;
+	const char** mArgv;
 
 private: // general vars
-	std::deque<int>	mDeque;
-	std::vector<int>	mVector;
+	std::deque<size_t>	mDeque;
+	std::list<size_t>	mList;
 };
 
 #endif
