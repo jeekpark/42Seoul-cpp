@@ -104,3 +104,9 @@ bool	PmergeMe::isInt(const std::string& literal) const
 		return false;
 }
 
+void PmergeMe::swap(int& a, int& b)
+{
+	int c = a;
+	a = b;
+	b = c;
+}

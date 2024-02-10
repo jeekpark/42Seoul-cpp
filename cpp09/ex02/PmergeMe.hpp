@@ -24,41 +24,37 @@
 class PmergeMe
 {
 public: // OCF
-	PmergeMe(const int argc, const char**argv);
-	PmergeMe(const PmergeMe& copy);
-	~PmergeMe();
+  PmergeMe(const int argc, const char**argv);
+  PmergeMe(const PmergeMe& copy);
+  ~PmergeMe();
 private: // OCF: no uses
-	PmergeMe& operator=(const PmergeMe& copy);
+  PmergeMe& operator=(const PmergeMe& copy);
 
 public: // basic function
-	bool sort(); // returns success or failure
-
-
+  bool sort(); // returns success or failure
 
 
 
 
 private: // basic(priv) function
 
-	time_t sortByList(); // returns time taken
-	time_t sortByDeque(); // returns time taken
-	void sort(std::list<size_t>& arr);
+  time_t sortByList(); // returns time taken
+  time_t sortByDeque(); // returns time taken
+  void sort(std::list<size_t>& arr);
 
-	
-	
-	
 private: // utils
-	void printArgv() const;
-	void printDeque() const;
-	bool isInt(const std::string& literal) const;
+  void printArgv() const;
+  void printDeque() const;
+  bool isInt(const std::string& literal) const;
+  void swap(int& a, int& b);
 
 private: // const vars
-	const int mArgc;
-	const char** mArgv;
+  const int mArgc;
+  const char** mArgv;
 
 private: // general vars
-	std::deque<size_t>	mDeque;
-	std::list<size_t>	mList;
+  std::deque<size_t>	mDeque;
+  std::list<size_t>	mList;
 };
 
 #endif
