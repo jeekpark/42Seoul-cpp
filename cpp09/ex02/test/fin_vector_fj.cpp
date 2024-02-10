@@ -3,48 +3,49 @@
 #include <unordered_map>
 #include <iostream>
 
-size_t find_insert_point(size_t x, const std::vector<size_t>& xs)
+size_t find_insert_point(size_t x, const std::vector<size_t>& array)
 {
-    size_t lo = 0, hi = xs.size();
+    size_t lo = 0, hi = array.size();
     while (hi > lo)
     {
       size_t mid = lo + (hi - lo) / 2;
-      if (x < xs[mid]) hi = mid;
-      else if (xs[mid] < x) lo = mid + 1;
+      if (x < array[mid]) hi = mid;
+      else if (array[mid] < x) lo = mid + 1;
       else return mid;
     }
     return lo;
 }
 
-void sort(std::vector<size_t>& xs)
+void sort(std::vector<size_t>& arr)
 {
-  if (xs.size() < 2) return;
+  if (arr.size() < 2) return;
 
   std::unordered_map<size_t, std::vector<size_t> > partner;
-  size_t half = xs.size() / 2;
+  size_t half = arr.size() / 2;
   for (size_t i = 0; i < half; ++i)
   {
-    if (xs[i] < xs[i + half]) std::swap(xs[i], xs[i + half]);
-    partner[xs[i]].push_back(xs[i + half]);
+    if (arr[i] < arr[i + half])
+      std::swap(arr[i], arr[i + half]);
+    partner[arr[i]].push_back(arr[i + half]);
   }
 
-  std::vector<size_t> first_half(xs.begin(), xs.begin() + half);
+  std::vector<size_t> first_half(arr.begin(), arr.begin() + half);
   sort(first_half);
 
-  std::copy(first_half.begin(), first_half.end(), xs.begin());
+  std::copy(first_half.begin(), first_half.end(), arr.begin());
   for (size_t i = 0; i < half; ++i)
   {
-    size_t y = partner[xs[2 * i]].back(); partner[xs[2 * i]].pop_back();
-    size_t idx = find_insert_point(y, std::vector<size_t>(xs.begin(), xs.begin() + 2 * i));
-    std::rotate(xs.begin() + idx, xs.begin() + half + i, xs.begin() + half + i + 1);
-    xs[idx] = y;
+    size_t y = partner[arr[2 * i]].back(); partner[arr[2 * i]].pop_back();
+    size_t idx = find_insert_point(y, std::vector<size_t>(arr.begin(), arr.begin() + 2 * i));
+    std::rotate(arr.begin() + idx, arr.begin() + half + i, arr.begin() + half + i + 1);
+    arr[idx] = y;
   }
   
-  if (xs.size() % 2 > 0)
+  if (arr.size() & 1)
   {
-    size_t i = xs.size() - 1;
-    size_t idx = find_insert_point(xs[i], std::vector<size_t>(xs.begin(), xs.begin() + i));
-    std::rotate(xs.begin() + idx, xs.begin() + i, xs.end());
+    size_t i = arr.size() - 1;
+    size_t idx = find_insert_point(arr[i], std::vector<size_t>(arr.begin(), arr.begin() + i));
+    std::rotate(arr.begin() + idx, arr.begin() + i, arr.end());
   }
 }
 
