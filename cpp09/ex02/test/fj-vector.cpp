@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 
+#include <unordered_map>
 #include <vector>
 #include <algorithm>
 
@@ -30,27 +31,48 @@ void printVector(std::vector<int>& v)
 }
 
 void mergeInsertion(std::vector<int>& d) {
-    int n = d.size();
-    if (n < 2) return;
+  int n = d.size();
+  if (n < 2) return;
 
-    std::vector<int> a;
-    std::vector<int> b;
-    for (int i = 0; i < n / 2; ++i)
+  std::unordered_map<int, std::vector<int> > partner;
+
+  for (int i = 0; i < n / 2; ++i)
+  {
+    if (d[i] < d[i + std::ceil((float)n / 2)])
     {
-      a.push_back(std::max(d[i], d[i + std::ceil((float)n / 2)]));
-      b.push_back(std::min(d[i], d[i + std::ceil((float)n / 2)]));
+      int temp = d[i];
+      d[i] = d[i + std::ceil((float)n / 2)];
+      d[i + std::ceil((float)n / 2)] = temp;
     }
-    if (n & 1)
-      b.push_back(d[n / 2]);
+    partner[d[i]].push_back(d[i + std::ceil((float)n / 2)]);
+  }
+  if (n & 1)
+    partner[d[n/2]].clear();
 
-    // ^ line: 9
+  
+  /* std::vector<int> a;
+  std::vector<int> b;
+  for (int i = 0; i < n / 2; ++i)
+  {
+    a.push_back(std::max(d[i], d[i + std::ceil((float)n / 2)]));
+    b.push_back(std::min(d[i], d[i + std::ceil((float)n / 2)]));
+  }
+  if (n & 1)
+    b.push_back(d[n / 2]);
 
-    mergeInsertion(a);
-    
-    printVector(a);
-    printVector(b);
+  // ^ line: 9
 
+  mergeInsertion(a);
+  
+  printVector(a);
+  printVector(b);
+ */
 }
+
+
+
+
+
 
 
 int main()
@@ -66,7 +88,9 @@ int main()
   d.push_back(5);
   d.push_back(1);
   d.push_back(3);
-  //d.push_back(7);
+  d.push_back(7);
+  d.push_back(0);
+  d.push_back(6);
 
 
   std::cout << "fin " << std::endl;
@@ -74,8 +98,5 @@ int main()
 
   mergeInsertion(d);
 
-  /* for (size_t i = 0; i < d.size(); ++i) {
-      std::cout << d[i] << " ";
-  } */
   std::cout << std::endl;
 }
