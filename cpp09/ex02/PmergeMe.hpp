@@ -19,7 +19,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ctime>
-
+#include "unordered_map.hpp"
 
 class PmergeMe
 {
@@ -46,7 +46,7 @@ private: // utils
   void printArgv() const;
   void printDeque() const;
   bool isInt(const std::string& literal) const;
-  void swap(int& a, int& b);
+  void swap(size_t& a, size_t& b);
 
 private: // const vars
   const int mArgc;

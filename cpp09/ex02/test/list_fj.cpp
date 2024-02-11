@@ -21,6 +21,17 @@ void sort(std::list<size_t>& sequence)
 {
   if (sequence.size() < 2) return ;
 
+  unordered_map<size_t, std::list<size_t> > partner;
+  size_t half = sequence.size() / 2;
+  std::list<size_t>::iterator it_1 = sequence.begin();
+  std::list<size_t>::iterator it_2 = sequence.begin();
+  for (size_t i = 0; i < half; ++i)
+    ++it_2;
+  for (size_t i = 0; i < half; ++i)
+  {
+    if (*it_1 < *it_2)
+      swap
+  }
 
 }
 
