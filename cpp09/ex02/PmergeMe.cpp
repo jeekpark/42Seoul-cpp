@@ -226,7 +226,7 @@ std::vector<size_t> PmergeMe::getJacobsthalOrderVector(size_t size)
   std::vector<size_t>::iterator start = res.begin() + 1, end = res.begin();
   for (size_t i = 2; end != res.end(); ++i)
   {
-    size_t jacobsthalNumber = (pow(2, i + 1) + pow(-1, i)) / 3;
+    size_t jacobsthalNumber = (std::pow(2, i + 1) + std::pow(-1, i)) / 3;
     while (*end != jacobsthalNumber && end != res.end()) ++end;
     std::reverse(start, end + (end == res.end() ? 0 : 1));
     start = end + (end == res.end() ? 0 : 1);
