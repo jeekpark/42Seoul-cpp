@@ -1,33 +1,33 @@
 #pragma once
 
 #include <cstddef>
-#include <list>
+#include <deque>
 #include <vector>
 #include <utility>
 
-template<typename Tkey, typename Tvalue, typename Tcontainer = std::list<std::pair<Tkey, Tvalue > > >
+template<typename Tkey, typename Tvalue, typename Tcontainer = std::deque<std::pair<Tkey, Tvalue > > >
 class unordered_map
 {};
 
 template<typename Tkey>
-class unordered_map<Tkey, std::list<Tkey>, std::list<std::pair<Tkey, std::list<Tkey> > > >
+class unordered_map<Tkey, std::deque<Tkey>, std::deque<std::pair<Tkey, std::deque<Tkey> > > >
 {
 public:
   unordered_map(void) : mMap() {}
-  std::list<Tkey>& operator[](Tkey key)
+  std::deque<Tkey>& operator[](Tkey key)
   {
-    for (typename std::list<std::pair<Tkey, std::list<Tkey> > >::iterator it = mMap.begin(); it != mMap.end(); ++it)
+    for (typename std::deque<std::pair<Tkey, std::deque<Tkey> > >::iterator it = mMap.begin(); it != mMap.end(); ++it)
     {
       if (it->first == key)
       {
         return it->second;
       }
     }
-    mMap.push_back(std::pair<Tkey, std::list<Tkey> >(key, std::list<Tkey>()));
+    mMap.push_back(std::pair<Tkey, std::deque<Tkey> >(key, std::deque<Tkey>()));
     return mMap.back().second;
   }
 private:
-  std::list<std::pair<Tkey, std::list<Tkey> > > mMap;
+  std::deque<std::pair<Tkey, std::deque<Tkey> > > mMap;
 };
 
 template<typename Tkey>
