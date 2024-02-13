@@ -2,6 +2,6 @@
 
 int main(const int argc, const char** argv)
 {
-  PmergeMe Application(argc, argv);
-  return Application.run() ? EXIT_SUCCESS : EXIT_FAILURE;
+  PmergeMe application(argc, argv);
+  return application.run() ? EXIT_SUCCESS : EXIT_FAILURE;
 }

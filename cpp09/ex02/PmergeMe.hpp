@@ -15,8 +15,7 @@
 #define PMERGEME_HPP
 
 #include <deque>
-#include <list>
-#include <cstdlib>
+#include <vector>
 #include <iostream>
 #include <ctime>
 
@@ -28,7 +27,7 @@ public:
   PmergeMe(const PmergeMe& copy);
   ~PmergeMe();
 
-public: // Application function
+public:
   bool run();
 
 //----------------------------------------------------------------------//
@@ -52,7 +51,7 @@ private: // const vars
   std::vector<size_t> mSequenceVector; 
   
 private: // copy of unordered_map 
-  template<typename Tkey, typename Tvalue, typename Tcontainer = std::list<std::pair<Tkey, Tvalue > > >
+  template<typename Tkey, typename Tvalue, typename Tcontainer = std::vector<std::pair<Tkey, Tvalue > > >
   class unordered_map
   {};
 
