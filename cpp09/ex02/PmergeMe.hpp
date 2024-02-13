@@ -34,8 +34,8 @@ public:
 
 //----------------------------------------------------------------------//
 private: // core function
-  size_t find_insert_point(size_t x, const std::deque<size_t>& sequence);
-  size_t find_insert_point(size_t x, const std::vector<size_t>& sequence);
+  size_t findInsertPoint(size_t x, const std::deque<size_t>& sequence);
+  size_t findInsertPoint(size_t x, const std::vector<size_t>& sequence);
   void sort(std::deque<size_t>& sequence);
   void sort(std::vector<size_t>& sequence);
 

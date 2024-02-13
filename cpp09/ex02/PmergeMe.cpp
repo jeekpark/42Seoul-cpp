@@ -94,8 +94,19 @@ bool PmergeMe::run()
 	return true;
 }
 
+size_t PmergeMe::findInsertPoint(size_t x, const std::deque<size_t>& sequence)
+{
+  size_t left = 0, right = sequence.size();
+  while (left < right)
+  {
+    size_t mid = left + (right - left) / 2;
+    if (sequence[mid] < x) left = mid + 1;
+    else right = mid;
+  }
+  return left;
+}
 
-size_t PmergeMe::find_insert_point(size_t x, const std::deque<size_t>& sequence)
+size_t PmergeMe::findInsertPoint(size_t x, const std::vector<size_t>& sequence)
 {
   size_t left = 0, right = sequence.size();
   while (left < right)
@@ -106,17 +117,7 @@ size_t PmergeMe::find_insert_point(size_t x, const std::deque<size_t>& sequence)
   }
   return left;
 }
-size_t PmergeMe::find_insert_point(size_t x, const std::vector<size_t>& sequence)
-{
-  size_t left = 0, right = sequence.size();
-  while (left < right)
-  {
-    size_t mid = left + (right - left) / 2;
-    if (sequence[mid] < x) left = mid + 1;
-    else right = mid;
-  }
-  return left;
-}
+
 void PmergeMe::sort(std::deque<size_t>& sequence)
 {
   if (sequence.size() < 2) return;
@@ -141,7 +142,7 @@ void PmergeMe::sort(std::deque<size_t>& sequence)
     while (*it != sequence[jacobsthalOrder[i] - 1]) ++it;
     size_t idx = 0;
     if (i != 0)
-      idx = find_insert_point(y, std::deque<size_t>(firstHalf.begin(), it + 1));
+      idx = findInsertPoint(y, std::deque<size_t>(firstHalf.begin(), it + 1));
     if (i == 0)
       firstHalf.push_front(y);
     else
@@ -150,11 +151,12 @@ void PmergeMe::sort(std::deque<size_t>& sequence)
   if (sequence.size() & 1)
   {
     size_t i = sequence.size() - 1;
-    size_t idx = find_insert_point(sequence[i], firstHalf);
+    size_t idx = findInsertPoint(sequence[i], firstHalf);
     firstHalf.insert(firstHalf.begin() + idx, sequence[i]);
   }
   std::copy(firstHalf.begin(), firstHalf.end(), sequence.begin());
 }
+
 void PmergeMe::sort(std::vector<size_t>& sequence)
 {
   if (sequence.size() < 2) return;
@@ -179,13 +181,13 @@ void PmergeMe::sort(std::vector<size_t>& sequence)
     while (*it != sequence[jacobsthalOrder[i] - 1]) ++it;
     size_t idx = 0;
     if (i != 0)
-      idx = find_insert_point(y, std::vector<size_t>(firstHalf.begin(), it + 1));
+      idx = findInsertPoint(y, std::vector<size_t>(firstHalf.begin(), it + 1));
     firstHalf.insert(firstHalf.begin() + idx, y);
   }
   if (sequence.size() & 1)
   {
     size_t i = sequence.size() - 1;
-    size_t idx = find_insert_point(sequence[i], firstHalf);
+    size_t idx = findInsertPoint(sequence[i], firstHalf);
     firstHalf.insert(firstHalf.begin() + idx, sequence[i]);
   }
   std::copy(firstHalf.begin(), firstHalf.end(), sequence.begin());
@@ -233,6 +235,7 @@ std::vector<size_t> PmergeMe::getJacobsthalOrderVector(size_t size)
   }
   return res;
 }
+
 std::deque<size_t> PmergeMe::getJacobsthalOrderDeque(size_t size)
 {
   std::deque<size_t> res(size);
