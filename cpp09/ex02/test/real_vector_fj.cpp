@@ -1,79 +1,102 @@
 #include <vector>
 #include <functional>
-#include <unordered_map>
+#include "unordered_map.hpp"
 #include <iostream>
+int cmp = 0;
+
+std::vector<size_t> getJacobsthalOrderVector(size_t size)
+{
+  std::vector<size_t> res(size);
+  for (size_t i = 1; i <= size; ++i) res[i - 1] = i;
+  if (size == 1) return res;
+  std::vector<size_t>::iterator start = res.begin() + 1, end = res.begin();
+  for (size_t i = 2; end != res.end(); ++i)
+  {
+    size_t jacobsthalNumber = (pow(2, i + 1) + pow(-1, i)) / 3;
+    while (*end != jacobsthalNumber && end != res.end()) ++end;
+    std::reverse(start, end + (end == res.end() ? 0 : 1));
+    start = end + (end == res.end() ? 0 : 1);
+  }
+  return res;
+}
 
 size_t find_insert_point(size_t x, const std::vector<size_t>& array)
 {
-    size_t lo = 0, hi = array.size();
-    while (hi > lo)
-    {
-      size_t mid = lo + (hi - lo) / 2;
-      if (x < array[mid]) hi = mid;
-      else if (array[mid] < x) lo = mid + 1;
-      else return mid;
-    }
-    return lo;
+  size_t left = 0, right = array.size();
+  while (left < right)
+  {
+    size_t mid = left + (right - left) / 2;
+    if (array[mid] < x) left = mid + 1;
+    else right = mid;
+  }
+  return left;
 }
 
 void sort(std::vector<size_t>& arr)
 {
   if (arr.size() < 2) return;
 
-  std::unordered_map<size_t, std::vector<size_t> > partner;
+  unordered_map<size_t, std::vector<size_t> , std::vector<std::pair<size_t, std::vector<size_t> > > > partner;
   size_t half = arr.size() / 2;
   for (size_t i = 0; i < half; ++i)
   {
-    if (arr[i] < arr[i + half])
-      std::swap(arr[i], arr[i + half]);
+    if (arr[i] < arr[i + half]) std::swap(arr[i], arr[i + half]);
     partner[arr[i]].push_back(arr[i + half]);
   }
 
   std::vector<size_t> first_half(arr.begin(), arr.begin() + half);
   sort(first_half);
-
+  
   std::copy(first_half.begin(), first_half.end(), arr.begin());
+  std::vector<size_t> jacobsthalOrder = getJacobsthalOrderVector(half);
   for (size_t i = 0; i < half; ++i)
   {
-    size_t y = partner[arr[2 * i]].back(); partner[arr[2 * i]].pop_back();
-    size_t idx = find_insert_point(y, std::vector<size_t>(arr.begin(), arr.begin() + 2 * i));
-    std::rotate(arr.begin() + idx, arr.begin() + half + i, arr.begin() + half + i + 1);
-    arr[idx] = y;
+    size_t y = partner[arr[jacobsthalOrder[i] - 1]].back(); partner[arr[jacobsthalOrder[i] - 1]].pop_back();
+    std::vector<size_t>::iterator it = first_half.begin();
+    while (*it != arr[jacobsthalOrder[i] - 1]) ++it;
+    size_t idx = 0;
+    if (i != 0)
+      idx = find_insert_point(y, std::vector<size_t>(first_half.begin(), it + 1));
+    first_half.insert(first_half.begin() + idx, y);
   }
-  
   if (arr.size() & 1)
   {
     size_t i = arr.size() - 1;
-    size_t idx = find_insert_point(arr[i], std::vector<size_t>(arr.begin(), arr.begin() + i));
-    std::rotate(arr.begin() + idx, arr.begin() + i, arr.end());
+    size_t idx = find_insert_point(arr[i], first_half);
+    first_half.insert(first_half.begin() + idx, arr[i]);
   }
+  std::copy(first_half.begin(), first_half.end(), arr.begin());
 }
 
 #include <iostream>
 #include <vector>
-int main() {
-
-    std::vector<size_t> test_vector;
-    test_vector.push_back(0);
-    test_vector.push_back(20);
-    test_vector.push_back(7);
-    test_vector.push_back(1);
-    test_vector.push_back(30);
-    test_vector.push_back(5);
-    test_vector.push_back(8);
-    test_vector.push_back(15);
-    test_vector.push_back(18);
-    std::cout << "Original vector:" << std::endl;
-    for (size_t i = 0; i < test_vector.size(); ++i)
-        std::cout << test_vector[i] << " ";
-    std::cout << std::endl;
+int main()
+{
+  std::srand(static_cast<unsigned int>(std::time(0)));
+  int  h = 0;
+  while (1) 
+  {
+    std::vector<size_t> random_numbers;
+    std::vector<size_t> copy;
+    for (int i = 0; i < 56; ++i) 
+        random_numbers.push_back(std::rand() % 100000 + 1);
+    copy = random_numbers;
+    sort(random_numbers);
+    std::sort(copy.begin(), copy.end());
+    if (cmp > 255)
+    {
+      if (h < cmp) h = cmp;
+      std::cout << h - 255 << std::endl;
+    }
     
-    sort(test_vector);
-
-    std::cout << "Sorted vector:" << std::endl;
-    for (size_t i = 0; i < test_vector.size(); ++i)
-        std::cout << test_vector[i] << " ";
-    std::cout << std::endl;
-
+    for (int i = 0; i < 56; ++i)
+    {
+      if (copy[i] != random_numbers[i])
+        std::cout << "asdsadasd" << std::endl;
+      if (copy.size() != random_numbers.size())
+        std::cout << "asdasd" << std::endl;
+    }
+    cmp = 0;
+  }
     return 0;
 }

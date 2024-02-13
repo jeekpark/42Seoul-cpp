@@ -7,62 +7,59 @@
 
 using namespace std;
 
-/**
- * @brief It rearranges index numbers by jacobsthal numbers
- * 
- * @param n normal index
- * @return size_t optimal index
- */
-
-size_t j(size_t n)
 // 0 -> 1
 // 1 -> 1
 // 2 -> 3
 // 3 -> 5
 // 4 -> 11
+
+/**
+ * @brief Get the Jacobsthal number
+ *
+ * n -> return 
+ * 0 -> 1
+ * 1 -> 1
+ * 2 -> 3
+ * 3 -> 5
+ * 4 -> 11
+ *
+ * @param n order
+ * @return size_t Jacobsthal number
+ */
+size_t getJacobsthalNumber(size_t n)
 {
     return (pow(2, n + 1) + pow(-1, n)) / 3;
 }
 
-std::vector<size_t> optIndexArr(size_t size) // 10 -> 1 (3 2) (5 4) (10 9 8 7 6)
+/**
+ * @brief Get the Jacobsthal Order object
+ * 
+ * 10 -> 1 (3 2) (5 4) (10 9 8 7 6)
+ *
+ * @param size 
+ * @return std::vector<size_t> Jacobsthal order array
+ */
+std::vector<size_t> getJacobsthalOrder(size_t size)
 {
-    const size_t maxIndex = size; // maxIndex -> 10
-
     std::vector<size_t> res(size);
-
-    for (size_t i = 1; i <= size; ++i)
-        res[i - 1] = i;
-    
-    if (size == 1)
-        return res;
-
-    std::vector<size_t>::iterator start = res.begin();
-    std::vector<size_t>::iterator end = res.begin();
-    size_t jNum = 2;
-    for (;;)
+    for (size_t i = 1; i <= size; ++i) res[i - 1] = i;
+    if (size == 1) return res;
+    std::vector<size_t>::iterator start = res.begin() + 1, end = res.begin();
+    for (size_t i = 2; end != res.end(); ++i)
     {
-        ++start;
-        while (end != res.end() && j(jNum) != *end)
-            end++;
-        if (end == res.end())
-        {
-            std::reverse(start, end);
-            return res;
-        }
-        //cout << *start <<  " " << *end << endl;
-        std::reverse(start, end+1);
-        start = end + 1;
-        jNum++;
-        
+        while (*end != getJacobsthalNumber(i) && end != res.end()) ++end;
+        std::reverse(start, end + (end == res.end() ? 0 : 1));
+        start = end + (end == res.end() ? 0 : 1);
     }
     return res;
 }
 
 int main()
 {
-    std::vector<size_t> a = optIndexArr(10);
+    int size = 5;
+    std::vector<size_t> a = getJacobsthalOrder(size);
 
-    for (int i = 0; i < 10; ++i)
+    for (int i = 0; i < size; ++i)
     {
         cout << a[i] << endl;
     }
