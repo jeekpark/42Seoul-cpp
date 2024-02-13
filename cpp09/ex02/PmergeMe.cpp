@@ -53,8 +53,8 @@ bool PmergeMe::run()
 		}
 	}
 
-
 	clock_t start, end;
+
 	start = clock();
 	for (int i = 1; i < mArgc; ++i)
 	{
@@ -73,8 +73,6 @@ bool PmergeMe::run()
 	end = clock();
 	double vectorTimeTaken = (double(end - start) / CLOCKS_PER_SEC) * 1000.0;
 
-
-
 	std::cout << "Before:\t";
 	printArgv();
 	std::cout << "\nAfter:\t";
@@ -87,7 +85,7 @@ bool PmergeMe::run()
 						<< std::endl;
 	std::cout << "Time to process a range of "
 						<< mArgc - 1
-						<< " elements with std::list : "
+						<< " elements with std::vector : "
 						<< static_cast<unsigned long>(vectorTimeTaken)
 						<< " ms"
 						<< std::endl;
@@ -97,7 +95,14 @@ bool PmergeMe::run()
 
 size_t PmergeMe::find_insert_point(size_t x, const std::deque<size_t>& sequence)
 {
-
+  size_t left = 0, right = sequence.size();
+  while (left < right)
+  {
+    size_t mid = left + (right - left) / 2;
+    if (sequence[mid] < x) left = mid + 1;
+    else right = mid;
+  }
+  return left;
 }
 size_t PmergeMe::find_insert_point(size_t x, const std::vector<size_t>& sequence)
 {
@@ -112,7 +117,38 @@ size_t PmergeMe::find_insert_point(size_t x, const std::vector<size_t>& sequence
 }
 void PmergeMe::sort(std::deque<size_t>& sequence)
 {
-	std::sort(sequence.begin(), sequence.end());
+  if (sequence.size() < 2) return;
+
+  unordered_map<size_t, std::deque<size_t> , std::deque<std::pair<size_t, std::deque<size_t> > > > partner;
+  size_t half = sequence.size() / 2;
+  for (size_t i = 0; i < half; ++i)
+  {
+    if (sequence[i] < sequence[i + half]) std::swap(sequence[i], sequence[i + half]);
+    partner[sequence[i]].push_back(sequence[i + half]);
+  }
+
+  std::deque<size_t> first_half(sequence.begin(), sequence.begin() + half);
+  sort(first_half);
+
+  std::copy(first_half.begin(), first_half.end(), sequence.begin());
+  std::deque<size_t> jacobsthalOrder = getJacobsthalOrderDeque(half);
+  for (size_t i = 0; i < half; ++i)
+  {
+    size_t y = partner[sequence[jacobsthalOrder[i] - 1]].back(); partner[sequence[jacobsthalOrder[i] - 1]].pop_back();
+    std::deque<size_t>::iterator it = first_half.begin();
+    while (*it != sequence[jacobsthalOrder[i] - 1]) ++it;
+    size_t idx = 0;
+    if (i != 0)
+      idx = find_insert_point(y, std::deque<size_t>(first_half.begin(), it + 1));
+    first_half.insert(first_half.begin() + idx, y);
+  }
+  if (sequence.size() & 1)
+  {
+    size_t i = sequence.size() - 1;
+    size_t idx = find_insert_point(sequence[i], first_half);
+    first_half.insert(first_half.begin() + idx, sequence[i]);
+  }
+  std::copy(first_half.begin(), first_half.end(), sequence.begin());
 }
 void PmergeMe::sort(std::vector<size_t>& sequence)
 {
@@ -194,5 +230,16 @@ std::vector<size_t> PmergeMe::getJacobsthalOrderVector(size_t size)
 }
 std::deque<size_t> PmergeMe::getJacobsthalOrderDeque(size_t size)
 {
-
+  std::deque<size_t> res(size);
+  for (size_t i = 1; i <= size; ++i) res[i - 1] = i;
+  if (size == 1) return res;
+  std::deque<size_t>::iterator start = res.begin() + 1, end = res.begin();
+  for (size_t i = 2; end != res.end(); ++i)
+  {
+    size_t jacobsthalNumber = (pow(2, i + 1) + pow(-1, i)) / 3;
+    while (*end != jacobsthalNumber && end != res.end()) ++end;
+    std::reverse(start, end + (end == res.end() ? 0 : 1));
+    start = end + (end == res.end() ? 0 : 1);
+  }
+  return res;
 }
