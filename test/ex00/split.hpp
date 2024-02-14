@@ -16,6 +16,7 @@
 
 #include <list>
 #include <string>
+#include <sstream>
 
 std::list<std::string> split(const std::string& str, char c);
 

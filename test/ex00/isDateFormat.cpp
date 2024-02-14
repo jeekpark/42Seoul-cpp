@@ -11,10 +11,6 @@
 /* ************************************************************************** */
 
 #include "./isDateFormat.hpp"
-#include <cctype>
-#include <cstddef>
-#include <cstdlib>
-#include "./split.hpp"
 
 bool isLeapYear(long year)
 {

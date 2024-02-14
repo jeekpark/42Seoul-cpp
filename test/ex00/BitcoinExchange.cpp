@@ -12,8 +12,6 @@
 
 #include "./BitcoinExchange.hpp"
 
-
-
 /* public head */
 BitcoinExchange::BitcoinExchange()
 : mDatabase()

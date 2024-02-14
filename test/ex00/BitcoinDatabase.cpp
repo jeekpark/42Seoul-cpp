@@ -12,17 +12,6 @@
 
 #include "./BitcoinDatabase.hpp"
 
-#include <cstddef>
-#include <exception>
-#include <fstream>
-#include <iostream>
-#include <limits>
-#include <string>
-#include <utility>
-
-#include "./split.hpp"
-#include "./isDateFormat.hpp"
-
 /* public head */
 BitcoinDatabase::BitcoinDatabase(void) {}
 

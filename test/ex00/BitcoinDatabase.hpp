@@ -15,17 +15,12 @@
 #define BITCOINDATABASE_HPP
 
 
-#include <functional>
+
 #include <map>
-#include <memory>
-#include <exception>
-#include <cstddef>
 #include <exception>
 #include <fstream>
-#include <iostream>
 #include <limits>
 #include <string>
-#include <utility>
 #include <cstdlib>
 
 #include "./split.hpp"

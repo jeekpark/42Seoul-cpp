@@ -15,7 +15,6 @@
 #define BITCOINEXCHANGE_HPP
 
 #include <list>
-#include <cstdlib>
 #include <exception>
 #include <fstream>
 #include <limits>

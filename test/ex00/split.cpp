@@ -12,8 +12,6 @@
 
 #include "./split.hpp"
 
-#include <sstream>
-
 std::list<std::string> split(const std::string& str, char c)
 {
   std::list<std::string> tokens;
