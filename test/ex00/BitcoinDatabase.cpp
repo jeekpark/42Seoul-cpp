@@ -50,7 +50,7 @@ float BitcoinDatabase::getExchangeRateByDate(const std::string& date)
 void BitcoinDatabase::importDatabase(const std::string& databaseFilePath)
 {
   mDatabase.clear();
-  std::ifstream inputFile(databaseFilePath);
+  std::ifstream inputFile(databaseFilePath.c_str());
   if (inputFile.is_open() == false)
     throw BitcoinDatabase::InvaildDatabaseException();
   std::string line;

@@ -46,7 +46,7 @@ void BitcoinExchange::exchange(const std::string& inputFilePath)
 {
   if (mDatabase.getDatabaseSize() == 0)
     throw BitcoinExchange::EmptyDatabaseException();
-  std::ifstream inputFile(inputFilePath);
+  std::ifstream inputFile(inputFilePath.c_str());
   if (inputFile.is_open() == false)
     throw BitcoinExchange::InvalidInputException();
   std::string line;

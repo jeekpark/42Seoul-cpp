@@ -26,6 +26,7 @@
 #include <limits>
 #include <string>
 #include <utility>
+#include <cstdlib>
 
 #include "./split.hpp"
 #include "./isDateFormat.hpp"

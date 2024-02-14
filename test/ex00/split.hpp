@@ -15,6 +15,7 @@
 #define SPLIT_HPP
 
 #include <list>
+#include <string>
 
 std::list<std::string> split(const std::string& str, char c);
 
