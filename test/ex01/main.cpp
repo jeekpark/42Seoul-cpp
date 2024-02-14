@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstddef>
-#include <exception>
 #include <iostream>
 #include "RPN.hpp"
 
