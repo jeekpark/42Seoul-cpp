@@ -1,17 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 08:10:14 by jeekpark          #+#    #+#             */
-/*   Updated: 2024/02/14 09:44:28 by jeekpark         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "PmergeMe.hpp"
-
 
 PmergeMe::PmergeMe(const int argc, const char** argv)
 : mArgc(argc)
@@ -75,8 +62,7 @@ bool PmergeMe::run()
 	end = clock();
 	double vectorTimeTaken = (double(end - start) / CLOCKS_PER_SEC) * 1000.0;
 
-	
-	
+
 	std::cout << "Before:\t";
 	printArgv();
 	std::cout << "\nAfter:\t";
@@ -98,7 +84,8 @@ bool PmergeMe::run()
 
 size_t PmergeMe::findInsertPoint(size_t x, const std::deque<size_t>& sequence)
 {
-  size_t left = 0, right = sequence.size();
+  size_t left = 0;
+  size_t right = sequence.size();
   while (left < right)
   {
     size_t mid = left + (right - left) / 2;
@@ -110,7 +97,8 @@ size_t PmergeMe::findInsertPoint(size_t x, const std::deque<size_t>& sequence)
 
 size_t PmergeMe::findInsertPoint(size_t x, const std::vector<size_t>& sequence)
 {
-  size_t left = 0, right = sequence.size();
+  size_t left = 0;
+  size_t right = sequence.size();
   while (left < right)
   {
     size_t mid = left + (right - left) / 2;

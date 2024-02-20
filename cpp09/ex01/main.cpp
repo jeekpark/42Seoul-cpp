@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 23:14:14 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/19 13:32:21 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:06:14 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstddef>
-#include <exception>
 #include <iostream>
 #include "RPN.hpp"
 

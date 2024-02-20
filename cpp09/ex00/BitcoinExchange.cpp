@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 18:45:39 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/19 13:26:02 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:05:00 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./BitcoinExchange.hpp"
-
-#include <cstdlib>
-#include <exception>
-#include <fstream>
-#include <limits>
-#include <sstream>
-#include <string>
-#include <vector>
-
-#include "./split.hpp"
-#include "./isDateFormat.hpp"
-
 
 /* public head */
 BitcoinExchange::BitcoinExchange()
@@ -56,7 +44,7 @@ void BitcoinExchange::exchange(const std::string& inputFilePath)
 {
   if (mDatabase.getDatabaseSize() == 0)
     throw BitcoinExchange::EmptyDatabaseException();
-  std::ifstream inputFile(inputFilePath);
+  std::ifstream inputFile(inputFilePath.c_str());
   if (inputFile.is_open() == false)
     throw BitcoinExchange::InvalidInputException();
   std::string line;
@@ -67,19 +55,19 @@ void BitcoinExchange::exchange(const std::string& inputFilePath)
   }
   while (std::getline(inputFile, line))
   {
-    std::vector<std::string> splited = split(line, ' ');
+    std::list<std::string> splited = split(line, ' ');
     if (line.length() < 14
       || line[10] != ' '
       || line[11] != '|'
       || line[12] != ' '
       || splited.size() != 3
-      || isDateFormat(splited[0]) == false)
+      || isDateFormat(splited.front()) == false)
     {
       mExchangeResult.push_back(std::string("Error: bad input => ") + line);
       continue;
     }
-    std::string date = splited[0];
-    std::string bitcoinAmount = splited[2];
+    std::string date = splited.front();
+    std::string bitcoinAmount = splited.back();
     char* endPtr = NULL;
     double bitcoinAmountDouble = std::strtod(bitcoinAmount.c_str(), &endPtr);
     if (*endPtr != '\0')
@@ -111,7 +99,7 @@ void BitcoinExchange::exchange(const std::string& inputFilePath)
   }
 }
 
-const std::vector<std::string>& BitcoinExchange::getExchangeResult(void) const
+const std::list<std::string>& BitcoinExchange::getExchangeResult(void) const
 {
   return mExchangeResult;
 }

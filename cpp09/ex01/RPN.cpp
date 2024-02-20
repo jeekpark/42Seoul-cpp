@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-#include <cctype>
-#include <stack>
 
 /* public head */
 RPN::RPN(void) {}

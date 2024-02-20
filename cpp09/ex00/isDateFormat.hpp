@@ -15,6 +15,9 @@
 #define ISDATEFORMAT_HPP
 
 #include <string>
+#include <cstdlib>
+
+#include "./split.hpp"
 
 bool  isLeapYear(long year);
 bool  isDateFormat(const std::string& str);

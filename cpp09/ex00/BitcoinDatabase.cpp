@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinDatabase.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 19:05:43 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/19 13:24:05 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:04:04 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./BitcoinDatabase.hpp"
-
-#include <cstddef>
-#include <exception>
-#include <fstream>
-#include <iostream>
-#include <limits>
-#include <string>
-#include <utility>
-#include <vector>
-
-#include "./split.hpp"
-#include "./isDateFormat.hpp"
 
 /* public head */
 BitcoinDatabase::BitcoinDatabase(void) {}
@@ -51,7 +39,7 @@ float BitcoinDatabase::getExchangeRateByDate(const std::string& date)
 void BitcoinDatabase::importDatabase(const std::string& databaseFilePath)
 {
   mDatabase.clear();
-  std::ifstream inputFile(databaseFilePath);
+  std::ifstream inputFile(databaseFilePath.c_str());
   if (inputFile.is_open() == false)
     throw BitcoinDatabase::InvaildDatabaseException();
   std::string line;
@@ -62,11 +50,11 @@ void BitcoinDatabase::importDatabase(const std::string& databaseFilePath)
   }
   while (std::getline(inputFile, line))
   {
-    std::vector<std::string> dateRate = split(line, ',');
+    std::list<std::string> dateRate = split(line, ',');
     if (dateRate.size() != 2)
       throw BitcoinDatabase::InvaildDatabaseException();
-    std::string dateLiteral = dateRate[0];
-    std::string rateLiteral = dateRate[1];
+    std::string dateLiteral = dateRate.front();
+    std::string rateLiteral = dateRate.back();
     char* endPtr = NULL;
     double rate = std::strtod(rateLiteral.c_str(), &endPtr);
     if (isDateFormat(dateLiteral) == false

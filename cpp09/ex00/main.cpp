@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:17:06 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/19 13:31:35 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:52:27 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(const int argc, const char** argv)
   {
     exchanger.importDatabase(std::string("./data.csv"));
     exchanger.exchange(std::string(argv[1]));
-    for (std::vector<std::string>::const_iterator it = exchanger.getExchangeResult().begin();
+    for (std::list<std::string>::const_iterator it = exchanger.getExchangeResult().begin();
       it != exchanger.getExchangeResult().end(); ++it)
       std::cout << *it << '\n';
   }

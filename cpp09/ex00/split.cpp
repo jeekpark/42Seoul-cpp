@@ -3,22 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   split.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 20:06:59 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/19 13:32:10 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:43:30 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./split.hpp"
 
-#include <sstream>
-#include <string>
-#include <vector>
-
-std::vector<std::string> split(const std::string& str, char c)
+std::list<std::string> split(const std::string& str, char c)
 {
-  std::vector<std::string> tokens;
+  std::list<std::string> tokens;
   std::string token;
   std::istringstream tokenStream(str);
 

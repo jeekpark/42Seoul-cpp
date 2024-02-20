@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinDatabase.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 17:22:42 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/11/19 13:25:33 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:07:42 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 #ifndef BITCOINDATABASE_HPP
 #define BITCOINDATABASE_HPP
 
-#include <string>
-#include <functional>
-#include <map>
-#include <memory>
-#include <utility>
-#include <exception>
 
+
+#include <map>
+#include <exception>
+#include <fstream>
+#include <limits>
+#include <string>
+#include <cstdlib>
+
+#include "./split.hpp"
+#include "./isDateFormat.hpp"
 
 class BitcoinDatabase
 {
