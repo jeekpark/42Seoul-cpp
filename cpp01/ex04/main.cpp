@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeekpark <jeekpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 15:03:38 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/10/02 15:28:36 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:27:49 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,18 @@ int	main( int argc, char **argv )
 	std::string	newFileName( argv[1] );
 	newFileName.append( ".replace" );
 	std::ofstream	outFile( newFileName.c_str() );
+	if (!outFile)
+	{
+		std::cerr << "Error: Unable to open or create file." << std::endl;
+		return 1;
+	}
 	outFile << content;
+	if (outFile.fail())
+	{
+		std::cerr << "Error: Failed to write to the file '" << newFileName << "'." << std::endl;
+		outFile.close();
+		return 1;
+	}
 	outFile.close();
-
 	return 0;
 }
