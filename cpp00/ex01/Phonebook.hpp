@@ -6,7 +6,7 @@
 /*   By: jeekpark <jeekpark@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 12:21:00 by jeekpark          #+#    #+#             */
-/*   Updated: 2023/09/29 17:28:43 by jeekpark         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:48:59 by jeekpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ class Phonebook
 		~Phonebook();
 
 		void	add();
-		void	search();
+		void	show_contacts();
+		void	show_contact_by_index(int index);
+		int		get_count() const;
 };
 
 #endif
